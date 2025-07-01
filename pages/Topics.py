@@ -260,7 +260,7 @@ class Movie:
         st.write('In this section we are looking at data from movies released since 2022 until August 2023.')
 
         # Open the CSV file in read mode
-        with open("movies_since_2022.csv", "r", encoding="utf-8") as f:
+        with open("movies_since_2022_select_columns.csv", "r", encoding="utf-8") as f:
             csv_raw = f.read()  # Read the full content as a string
 
         # Split the raw CSV into lines
@@ -276,24 +276,20 @@ class Movie:
         st.write('Messy, right? We\'ll bring that data in with Python code.')
 
         # Read in the data
-        recent_movies_df = pd.read_csv('movies_since_2022.csv')
+        recent_movies_df = pd.read_csv('movies_since_2022_select_columns.csv')
 
         # Filter the columns to what I want to work with
-        recent_movies_df1 = recent_movies_df[['title', 'vote_average', 'vote_count', 'release_date', 'revenue', 
-                                    'runtime', 'budget', 'genres']]
+        # recent_movies_df1 = recent_movies_df[['title', 'vote_average', 'vote_count', 'release_date', 'revenue', 
+        #                             'runtime', 'budget', 'genres']]
         
-        st.write('Here\'s how that data looks with select columns brought into a dataframe with Python code:')
+        st.write('Here\'s how that data looks brought into a dataframe with Python code:')
         st.table(recent_movies_df1.head())
 
         with st.expander("How did we bring that data into Python?"):
             code = ''' # We read in the data into a dataframe from a csv file.
 recent_movies_df = pd.read_csv('movies_since_2022.csv')
 
-# We filtered to the columns of data we want to work with.
-recent_movies_df1 = recent_movies_df[['title', 'vote_average', 'vote_count', 'release_date', 'revenue', 
-                                    'runtime', 'budget', 'genres']]
-
-# Lastly, we displayed the first 5 rows of data to you in the app.
+# Next, we displayed the first 5 rows of data to you in the app.
 st.table(recent_movies_df1.head())
         '''
             st.code(code, language="python")
