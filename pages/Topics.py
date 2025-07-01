@@ -276,7 +276,7 @@ class Movie:
         st.write('Messy, right? We\'ll bring that data in with Python code.')
 
         # Read in the data
-        recent_movies_df = pd.read_csv('movies_since_2022_select_columns.csv')
+        recent_movies_df1 = pd.read_csv('movies_since_2022_select_columns.csv')
 
         # Filter the columns to what I want to work with
         # recent_movies_df1 = recent_movies_df[['title', 'vote_average', 'vote_count', 'release_date', 'revenue', 
