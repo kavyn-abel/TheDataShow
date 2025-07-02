@@ -72,11 +72,11 @@ st.dataframe(data = birthday_df.head())
 
         births_year_chart = (alt.Chart(years_df1).mark_bar().encode(
             x = alt.X('year:Q', title = 'Year'),
-            y = alt.Y('births', title = 'Total Births', scale=alt.Scale(domain=[3500000, 4500000]))
+            y = alt.Y('births:Q', title = 'Total Births', scale=alt.Scale(domain=[3500000, 4500000]))
         ).properties(
             width = 900,
             height = 700,
-            padding={"left": 50, "top": 10, "right": 30, "bottom": 50}
+            padding={"left": 80, "top": 10, "right": 30, "bottom": 50}
         )
                             )
 
