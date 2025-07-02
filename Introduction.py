@@ -8,7 +8,8 @@ col1, col2, col3 = st.columns([1, 2, 1])
 # Put the image in the center column
 with col2:
     # st.image('The Data Show Logo1.png', use_column_width=True)
-    st.image('TheDataShowAnimatedLogo.gif', use_column_width=True)
+    # st.image('TheDataShowAnimatedLogo.gif', use_column_width=True) # Deprecated
+    st.image('TheDataShowAnimatedLogo.gif', use_container_width=True)
 #------------------------------------------------------------------------------
 # Intro to data science
 st.write()
