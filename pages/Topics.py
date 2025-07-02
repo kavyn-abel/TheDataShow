@@ -280,11 +280,13 @@ class Movie:
         st.write('Messy, right? We\'ll bring that data in with Python code.')
 
         # Read in the data
-        recent_movies_df1 = pd.read_csv('movies_since_2022_select_columns.csv')
+        recent_movies_df = pd.read_csv('movies_since_2022_select_columns.csv')
 
         # Filter the columns to what I want to work with
         # recent_movies_df1 = recent_movies_df[['title', 'vote_average', 'vote_count', 'release_date', 'revenue', 
         #                             'runtime', 'budget', 'genres']]
+        recent_movies_df1 = recent_movies_df[['title', 'vote_average', 'vote_count', 'release_date', 'revenue', 
+                                     'runtime', 'budget', 'genres']]
         
         st.write('Here\'s how that data looks brought into a dataframe with Python code:')
         st.dataframe(recent_movies_df1.head(), hide_index=True)
@@ -294,7 +296,7 @@ class Movie:
 recent_movies_df = pd.read_csv('movies_since_2022.csv')
 
 # Next, we displayed the first 5 rows of data to you in the app.
-st.dataframe(recent_movies_df1.head())
+st.dataframe(recent_movies_df1.head(), hide_index=True)
         '''
             st.code(code, language="python")
 
@@ -307,20 +309,20 @@ st.dataframe(recent_movies_df1.head())
         divider_line()
         st.write('Now, let\'s sort the data by the vote average and see what movies, on average, get the highest vote rating out of 10.')
         highest_vote_avg = recent_movies_df1.sort_values('vote_average', ascending = False)
-        st.dataframe(highest_vote_avg.head())
+        st.dataframe(highest_vote_avg.head(), hide_index=True)
         st.write('Notice anything? These movies have a 10 point average, but there is only 1 vote on each of these movies.')
 
         st.text('')
         st.write('So, let\'s also sort by the vote count as well and see how that looks.')
         highest_vote_avg_and_count = recent_movies_df1.sort_values(['vote_average', 'vote_count'], ascending = False)
-        st.dataframe(highest_vote_avg_and_count.head())
+        st.dataframe(highest_vote_avg_and_count.head(), hide_index=True)
         st.write('Ok, still very few votes.')
 
         st.text('')
         st.write('What if we take a look at movies that have at least 500 votes- still sorted by the vote average and vote count.')
         # Now what if we have to look at the data where there has to be at least 500 votes
         highest_vote_avg_and_count1 = highest_vote_avg_and_count[highest_vote_avg_and_count['vote_count'] > 500]
-        st.dataframe(highest_vote_avg_and_count1.head())
+        st.dataframe(highest_vote_avg_and_count1.head(), hide_index=True)
         st.write('See the difference between this and our first output in this section?')
 
         
@@ -355,7 +357,7 @@ highest_vote_avg_and_count1 = highest_vote_avg_and_count[highest_vote_avg_and_co
 
         st.text('')
         st.write('Let\'s take a look at it:')
-        st.dataframe(bom_df.head(1))
+        st.dataframe(bom_df.head(1), hide_index=True)
 
         st.text('')
         st.write('We\'ll sort the data now by the Box Office Margin, and look at movies with at least 100 votes.')
