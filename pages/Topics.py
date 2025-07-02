@@ -38,8 +38,6 @@ class Birthday:
 
         st.write("Here\'s how that data looks when we've brought it into a pandas dataframe with Python code:")
         # A dataframe is like a table in excel, with rows and columns.
-        # st.table(data = birthday_df.head())
-        # Trying st.dataframe
         st.dataframe(data = birthday_df.head())
 
         # Expander for how we did that
@@ -72,13 +70,8 @@ st.dataframe(data = birthday_df.head())
 
         births_year_chart = (alt.Chart(years_df1).mark_bar().encode(
             x = alt.X('year:Q', title = 'Year'),
-            y = alt.Y('births:Q', title = 'Total Births') # , scale=alt.Scale(domain=[3500000, 4500000])
-        )# .properties(
-            # width = 500,
-            # height = 400 #,
-            # padding={"left": 80, "top": 10, "right": 30, "bottom": 50}
-        # )
-                            )
+            y = alt.Y('births:Q', title = 'Total Births') # , scale=alt.Scale(domain=[3500000, 4500000]) This scale was breaking the chart in the live app.
+        ))
 
         st.altair_chart(births_year_chart, theme = None)
 
@@ -91,7 +84,7 @@ years_df = birthday_df.groupby("year").sum().reset_index()
 # We created the chart with the altair library.
 births_year_chart = alt.Chart(years_df1).mark_bar().encode(
     x = alt.X('year', title = 'Year'),
-    y = alt.Y('births', title = 'Total Births', scale=alt.Scale(domain=[3500000, 4500000]))
+    y = alt.Y('births', title = 'Total Births')
 )
 
 # We presented the chart in the app.
@@ -294,7 +287,6 @@ class Movie:
         #                             'runtime', 'budget', 'genres']]
         
         st.write('Here\'s how that data looks brought into a dataframe with Python code:')
-        # st.table(recent_movies_df1.head())
         st.dataframe(recent_movies_df1.head())
 
         with st.expander("How did we bring that data into Python?"):
