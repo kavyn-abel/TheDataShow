@@ -9,7 +9,8 @@ col1, col2, col3 = st.columns([1, 2, 1])
 # Put the image in the center column
 with col2:
     # st.image('The Data Show Logo1.png', use_column_width=True)
-    st.image('The Data Show Logo1.png', use_column_width=True)
+    # st.image('The Data Show Logo1.png', use_column_width=True) # Deprecated
+    st.image('The Data Show Logo1.png', use_container_width=True)
 
 
 # Classes and Functions
