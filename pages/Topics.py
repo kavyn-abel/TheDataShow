@@ -75,7 +75,7 @@ st.dataframe(data = birthday_df.head())
             y = alt.Y('births:Q', title = 'Total Births') # , scale=alt.Scale(domain=[3500000, 4500000])
         ).properties(
             # width = 500,
-            height = 500,
+            height = 400,
             padding={"left": 80, "top": 10, "right": 30, "bottom": 50}
         )
                             )
