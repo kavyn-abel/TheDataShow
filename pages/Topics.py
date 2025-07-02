@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
+# Set the page wide to help with the squished dataframes.
+st.set_page_config(layout="wide")
+
 # For the logo
 # Create 3 columns
 col1, col2, col3 = st.columns([1, 2, 1])
