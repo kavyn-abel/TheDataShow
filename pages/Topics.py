@@ -75,7 +75,7 @@ st.dataframe(data = birthday_df.head())
             y = alt.Y('births', title = 'Total Births', scale=alt.Scale(domain=[3500000, 4500000]))
         ))
 
-        st.altair_chart(births_year_chart) # , theme = None
+        st.altair_chart(births_year_chart, use_container_width=false) # , theme = None
 
         st.write('Here we can see, according to our data, that the most births were in the year 2007.')
 
