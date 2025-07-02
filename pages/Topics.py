@@ -289,7 +289,8 @@ class Movie:
         #                             'runtime', 'budget', 'genres']]
         
         st.write('Here\'s how that data looks brought into a dataframe with Python code:')
-        st.table(recent_movies_df1.head())
+        # st.table(recent_movies_df1.head())
+        st.dataframe(recent_movies_df1.head())
 
         with st.expander("How did we bring that data into Python?"):
             code = ''' # We read in the data into a dataframe from a csv file.
