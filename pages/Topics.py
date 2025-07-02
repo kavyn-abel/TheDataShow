@@ -38,7 +38,9 @@ class Birthday:
 
         st.write("Here\'s how that data looks when we've brought it into a pandas dataframe with Python code:")
         # A dataframe is like a table in excel, with rows and columns.
-        st.table(data = birthday_df.head())
+        # st.table(data = birthday_df.head())
+        # Trying st.dataframe
+        st.dataframe(data = birthday_df.head())
 
         # Expander for how we did that
         with st.expander("How did we bring that data into python?"):
