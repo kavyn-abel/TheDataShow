@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # Set the page wide to help with the squished dataframes.
-st.set_page_config(layout="wide")
+# st.set_page_config(layout="wide")
 
 # For the logo
 # Create 3 columns
@@ -49,7 +49,7 @@ url = 'https://raw.githubusercontent.com/fivethirtyeight/data/master/births/US_b
 birthday_df = pd.read_csv(url)
 
 # Then displayed the first 5 rows of the dataframe in the app.
-st.table(data = birthday_df.head())
+st.dataframe(data = birthday_df.head())
     '''
             st.code(code, language="python")
 
@@ -225,7 +225,7 @@ st.write(f'Your birthday is the {user_birthday_commonality} most common birthday
         st.text('')
         st.text('')
         st.write('Here\'s a look at the most common birthdays:')
-        st.table(top_days_df2.head(10))
+        st.dataframe(top_days_df2.head(10))
 
         return days_df1
 
@@ -240,7 +240,7 @@ st.write(f'Your birthday is the {user_birthday_commonality} most common birthday
         low_days_df1 = low_days_df.copy()
         low_days_df1['month'] = low_days_df1['month'].replace(month_dict)
 
-        st.table(low_days_df1.head(10))
+        st.dataframe(low_days_df1.head(10))
 
         st.text_area('Write what you observe about this data:')
 
@@ -255,7 +255,7 @@ low_days_df1 = low_days_df.copy()
 low_days_df1['month'] = low_days_df1['month'].replace(month_dict)
 
 # Displayed the data back to the user in the app.
-st.table(low_days_df1.head(10))
+st.dataframe(low_days_df1.head(10))
         '''
             st.code(code, language="python")
 
@@ -297,7 +297,7 @@ class Movie:
 recent_movies_df = pd.read_csv('movies_since_2022.csv')
 
 # Next, we displayed the first 5 rows of data to you in the app.
-st.table(recent_movies_df1.head())
+st.dataframe(recent_movies_df1.head())
         '''
             st.code(code, language="python")
 
@@ -310,20 +310,20 @@ st.table(recent_movies_df1.head())
         divider_line()
         st.write('Now, let\'s sort the data by the vote average and see what movies, on average, get the highest vote rating out of 10.')
         highest_vote_avg = recent_movies_df1.sort_values('vote_average', ascending = False)
-        st.table(highest_vote_avg.head())
+        st.dataframe(highest_vote_avg.head())
         st.write('Notice anything? These movies have a 10 point average, but there is only 1 vote on each of these movies.')
 
         st.text('')
         st.write('So, let\'s also sort by the vote count as well and see how that looks.')
         highest_vote_avg_and_count = recent_movies_df1.sort_values(['vote_average', 'vote_count'], ascending = False)
-        st.table(highest_vote_avg_and_count.head())
+        st.dataframe(highest_vote_avg_and_count.head())
         st.write('Ok, still very few votes.')
 
         st.text('')
         st.write('What if we take a look at movies that have at least 500 votes- still sorted by the vote average and vote count.')
         # Now what if we have to look at the data where there has to be at least 500 votes
         highest_vote_avg_and_count1 = highest_vote_avg_and_count[highest_vote_avg_and_count['vote_count'] > 500]
-        st.table(highest_vote_avg_and_count1.head())
+        st.dataframe(highest_vote_avg_and_count1.head())
         st.write('See the difference between this and our first output in this section?')
 
         
@@ -358,7 +358,7 @@ highest_vote_avg_and_count1 = highest_vote_avg_and_count[highest_vote_avg_and_co
 
         st.text('')
         st.write('Let\'s take a look at it:')
-        st.table(bom_df.head(1))
+        st.dataframe(bom_df.head(1))
 
         st.text('')
         st.write('We\'ll sort the data now by the Box Office Margin, and look at movies with at least 100 votes.')
