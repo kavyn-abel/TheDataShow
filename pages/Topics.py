@@ -73,11 +73,11 @@ st.dataframe(data = birthday_df.head())
         births_year_chart = (alt.Chart(years_df1).mark_bar().encode(
             x = alt.X('year:Q', title = 'Year'),
             y = alt.Y('births:Q', title = 'Total Births') # , scale=alt.Scale(domain=[3500000, 4500000])
-        ).properties(
+        )# .properties(
             # width = 500,
-            height = 400 #,
+            # height = 400 #,
             # padding={"left": 80, "top": 10, "right": 30, "bottom": 50}
-        )
+        # )
                             )
 
         st.altair_chart(births_year_chart, theme = None)
