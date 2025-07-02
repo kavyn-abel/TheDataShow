@@ -72,7 +72,7 @@ st.dataframe(data = birthday_df.head())
 
         births_year_chart = (alt.Chart(years_df1).mark_bar().encode(
             x = alt.X('year', title = 'Year'),
-            y = alt.Y('births', title = 'Total Births', scale=alt.Scale(domain=[3500000, 4500000]))
+            y = alt.Y('births', title = 'Total Births')) # , scale=alt.Scale(domain=[3500000, 4500000]
         ))
 
         st.altair_chart(births_year_chart, theme = None)
