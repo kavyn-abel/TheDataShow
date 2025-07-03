@@ -292,7 +292,7 @@ class Movie:
         st.dataframe(recent_movies_df1.head(), hide_index=True)
 
         with st.expander("How did we bring that data into Python?"):
-            code = ''' # We read in the data into a dataframe from a csv file.
+            code = '''# We read in the data into a dataframe from a csv file.
 recent_movies_df = pd.read_csv('movies_since_2022.csv')
 
 # Next, we displayed the first 5 rows of data to you in the app.
@@ -327,7 +327,7 @@ st.dataframe(recent_movies_df1.head(), hide_index=True)
 
         
         with st.expander("How did we do this?"):
-            code = ''' # We sorted the data by the vote average.
+            code = '''# We sorted the data by the vote average.
 highest_vote_avg = recent_movies_df1.sort_values('vote_average', ascending = False)
 
 # Next, we additionally sorted by the vote count.
@@ -380,7 +380,7 @@ highest_vote_avg_and_count1 = highest_vote_avg_and_count[highest_vote_avg_and_co
         st.altair_chart(bom_movie_chart, theme = None)
 
         with st.expander("How did we do this?"):
-            code = ''' # We created a new column from ones that we already had (That's called 
+            code = '''# We created a new column from ones that we already had (That's called 
 # feauture engineering).
 # We made a column that calculates the difference between revenue and budget.
 bom_df = recent_movies_df1.copy()
@@ -452,7 +452,7 @@ st.altair_chart(bom_movie_chart, theme = None)
         col3.metric("Box Office Margin", f"{genre_bom_df1:,}")
 
         with st.expander("How did we do this?"):
-            code = ''' # We defined a list of genres.
+            code = '''# We defined a list of genres.
 genre_list = ['Drama', 'Comedy', 'Horror', 'Animation', 'Music', 'Thriller', 'Action', 'Romance', 'Science Fiction','Crime']
         
 # We allowed the user to select from that list.
