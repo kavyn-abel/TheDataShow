@@ -42,7 +42,7 @@ class Birthday:
 
         # Expander for how we did that
         with st.expander("How did we bring that data into python?"):
-            code = ''' # We used this python code to read in the csv file.
+            code = '''# We used this python code to read in the csv file.
 url = 'https://raw.githubusercontent.com/fivethirtyeight/data/master/births/US_births_2000-2014_SSA.csv'
 birthday_df = pd.read_csv(url)
 
@@ -78,7 +78,7 @@ st.dataframe(data = birthday_df.head(), hide_index=True)
         st.write('Here we can see, according to our data, that the most births were in the year 2007.')
 
         with st.expander("How did we get there?"):
-            code = ''' # We aggregated the data to get the number of births per year.
+            code = '''# We aggregated the data to get the number of births per year.
 years_df = birthday_df.groupby("year").sum().reset_index()
 
 # We created the chart with the altair library.
@@ -244,7 +244,7 @@ st.write(f'Your birthday is the {user_birthday_commonality} most common birthday
 
         # How we got there box
         with st.expander("How did we get to this lowest number of births view of the data?"):
-            code = ''' # We sorted the data starting from the lowest number of births, going up.
+            code = '''# We sorted the data starting from the lowest number of births, going up.
 low_days_df = days_df1.sort_values(by = 'births', ascending = True)
 
 # We mapped the months as numbers to their actual names with an earlier 
