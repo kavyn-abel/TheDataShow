@@ -38,7 +38,7 @@ class Birthday:
 
         st.write("Here\'s how that data looks when we've brought it into a pandas dataframe with Python code:")
         # A dataframe is like a table in excel, with rows and columns.
-        st.dataframe(data = birthday_df.head())
+        st.dataframe(data = birthday_df.head(), hide_index=True)
 
         # Expander for how we did that
         with st.expander("How did we bring that data into python?"):
@@ -47,7 +47,7 @@ url = 'https://raw.githubusercontent.com/fivethirtyeight/data/master/births/US_b
 birthday_df = pd.read_csv(url)
 
 # Then displayed the first 5 rows of the dataframe in the app.
-st.dataframe(data = birthday_df.head())
+st.dataframe(data = birthday_df.head(), hide_index=True)
     '''
             st.code(code, language="python")
 
@@ -223,7 +223,7 @@ st.write(f'Your birthday is the {user_birthday_commonality} most common birthday
         st.text('')
         st.text('')
         st.write('Here\'s a look at the most common birthdays:')
-        st.dataframe(top_days_df2.head(10))
+        st.dataframe(top_days_df2.head(10), hide_index=True)
 
         return days_df1
 
@@ -238,7 +238,7 @@ st.write(f'Your birthday is the {user_birthday_commonality} most common birthday
         low_days_df1 = low_days_df.copy()
         low_days_df1['month'] = low_days_df1['month'].replace(month_dict)
 
-        st.dataframe(low_days_df1.head(10))
+        st.dataframe(low_days_df1.head(10), hide_index=True)
 
         st.text_area('Write what you observe about this data:')
 
@@ -253,7 +253,7 @@ low_days_df1 = low_days_df.copy()
 low_days_df1['month'] = low_days_df1['month'].replace(month_dict)
 
 # Displayed the data back to the user in the app.
-st.dataframe(low_days_df1.head(10))
+st.dataframe(low_days_df1.head(10), hide_index=True)
         '''
             st.code(code, language="python")
 
