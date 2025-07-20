@@ -68,20 +68,12 @@ st.dataframe(data = birthday_df.head(), hide_index=True)
         # Here's alook at the data
         # st.table(data = years_df1)
 
-        births_year_chart = (alt.Chart(years_df1).mark_line(strokeWidth=3).encode(
+        births_year_chart = (alt.Chart(years_df1).mark_bar().encode(
             x = alt.X('year:Q', title = 'Year'),
             y = alt.Y('births:Q', title = 'Total Births') # , scale=alt.Scale(domain=[3500000, 4500000]) This scale was breaking the chart in the live app.
         ))
 
-        # Create a vertical line at x = 2007
-        rule = alt.Chart(pd.DataFrame({'year': [2007]})).mark_rule(color='red').encode(
-            x='year:Q'
-        )
-        
-        # Combine the two charts
-        births_year_chart1 = births_year_chart + rule
-
-        st.altair_chart(births_year_chart1, theme = None)
+        st.altair_chart(births_year_chart, theme = None)
 
         st.write('Here we can see, according to our data, that the most births were in the year 2007.')
 
@@ -90,21 +82,13 @@ st.dataframe(data = birthday_df.head(), hide_index=True)
 years_df = birthday_df.groupby("year").sum().reset_index()
 
 # We created the chart with the altair library.
-births_year_chart = alt.Chart(years_df1).mark_line(strokeWidth=3).encode(
+births_year_chart = alt.Chart(years_df1).mark_bar().encode(
     x = alt.X('year', title = 'Year'),
     y = alt.Y('births', title = 'Total Births')
 )
 
-# Create a vertical line at x = 2007
-rule = alt.Chart(pd.DataFrame({'year': [2007]})).mark_rule(color='red').encode(
-    x='year:Q'
-)
-        
-# Combine the two charts
-births_year_chart1 = births_year_chart + rule
-
 # We presented the chart in the app.
-st.altair_chart(altair_chart = births_year_chart1, theme = None)
+st.altair_chart(altair_chart = births_year_chart, theme = None)
         '''
             st.code(code, language="python")
 
@@ -515,7 +499,7 @@ col3.metric("Box Office Margin", f"{genre_bom_df1:,}")
 
 topic = st.selectbox(
     "Pick a Topic",
-    ("Select a topic", "📅 Birthdays", "🍿 Movies"), # , "🎵 Music", "☀️ Climate"
+    ("Select a topic", "📅 Birthdays", "🍿 Movies", "⚓ The Titanic"), # , "🎵 Music", "☀️ Climate"
     index=0
 )
 
