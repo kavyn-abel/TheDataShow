@@ -73,7 +73,15 @@ st.dataframe(data = birthday_df.head(), hide_index=True)
             y = alt.Y('births:Q', title = 'Total Births') # , scale=alt.Scale(domain=[3500000, 4500000]) This scale was breaking the chart in the live app.
         ))
 
-        st.altair_chart(births_year_chart, theme = None)
+        # Create a vertical line at x = 2007
+        rule = alt.Chart(pd.DataFrame({'year': [2007]})).mark_rule(color='red').encode(
+            x='year:Q'
+        )
+        
+        # Combine the two charts
+        births_year_chart1 = births_year_chart + rule
+
+        st.altair_chart(births_year_chart1, theme = None)
 
         st.write('Here we can see, according to our data, that the most births were in the year 2007.')
 
