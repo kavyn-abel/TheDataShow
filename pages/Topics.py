@@ -68,7 +68,7 @@ st.dataframe(data = birthday_df.head(), hide_index=True)
         # Here's alook at the data
         # st.table(data = years_df1)
 
-        births_year_chart = (alt.Chart(years_df1).mark_bar().encode(
+        births_year_chart = (alt.Chart(years_df1).mark_line().encode(
             x = alt.X('year:Q', title = 'Year'),
             y = alt.Y('births:Q', title = 'Total Births') # , scale=alt.Scale(domain=[3500000, 4500000]) This scale was breaking the chart in the live app.
         ))
@@ -82,7 +82,7 @@ st.dataframe(data = birthday_df.head(), hide_index=True)
 years_df = birthday_df.groupby("year").sum().reset_index()
 
 # We created the chart with the altair library.
-births_year_chart = alt.Chart(years_df1).mark_bar().encode(
+births_year_chart = alt.Chart(years_df1).mark_line().encode(
     x = alt.X('year', title = 'Year'),
     y = alt.Y('births', title = 'Total Births')
 )
