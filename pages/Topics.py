@@ -499,7 +499,7 @@ col3.metric("Box Office Margin", f"{genre_bom_df1:,}")
 
 topic = st.selectbox(
     "Pick a Topic",
-    ("Select a topic", "📅 Birthdays", "🍿 Movies", "⚓ The Titanic"), # , "🎵 Music", "☀️ Climate"
+    ("Select a topic", "📅 Birthdays", "🍿 Movies"), # , "⚓ The Titanic"
     index=0
 )
 
