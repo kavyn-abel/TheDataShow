@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
+import io
 
 # Set the page wide to help with the squished dataframes.
 # st.set_page_config(layout="wide")
@@ -531,28 +532,39 @@ st.dataframe(titanic_df.head(), hide_index=True)
         '''
             st.code(code, language="python")
 
-            return titanic_df
+        # Take a brief look at the dataset to understand what we are working with.
+        # Capture the df.info() output
+        buffer = io.StringIO()
+        titanic_df.info(buf=buffer)
+        titanic_df_info = buffer.getvalue()
+
+        # Display in Streamlit
+        st.text(titanic_df_info)
+
+        return titanic_df
         
     def pie_charts(titanic_df:pd.DataFrame):
         # Rename Sex to Gender
         titanic_df.rename(columns={'Sex':'Gender'}, inplace = True)
 
         # Look at gender data in a pie chart
-        alt.Chart(titanic_df).mark_arc().encode(
+        gender_chart = alt.Chart(titanic_df).mark_arc().encode(
             theta=alt.Theta(field='Gender', type='nominal', aggregate='count'),
             color=alt.Color('Gender:N'),
             tooltip=[alt.Tooltip('Gender:N'), alt.Tooltip('count():Q')]
         ).properties(title = 'Gender Distribution')
 
+        st.altair_chart(gender_chart, theme = None)
+
         # Pclass pie chart
-        alt.Chart(titanic_df).mark_arc().encode(
+        pclass_chart = alt.Chart(titanic_df).mark_arc().encode(
             theta=alt.Theta(field='Pclass', type='nominal', aggregate='count'),
             color=alt.Color('Pclass:N'),
             tooltip=[alt.Tooltip('Pclass:N'), alt.Tooltip('count():Q')]
         ).properties(title = 'Pclass Counts')
 
-        # Let's look at the info of the dataframe 
-        st.write(titanic_df.info())
+        st.altair_chart(pclass_chart, theme = None)
+
 
     def class_data():
         pass
