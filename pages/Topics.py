@@ -514,7 +514,7 @@ class Titanic:
         limited_csv_raw = "\n".join(lines[:row_limit+1])  # +1 to include header
 
         # Display the limited content
-        st.text_area(f"Here are the first {row_limit} rows of the raw data:", limited_csv_raw, height=200)
+        st.text_area(f"Here are the first {row_limit} rows of the raw data:", limited_csv_raw, height=125)
 
         st.write('Kind of hard to follow, right? We\'ll bring that data in with Python code.')
 
@@ -532,7 +532,9 @@ st.dataframe(titanic_df.head(), hide_index=True)
         '''
             st.code(code, language="python")
 
-        # Take a brief look at the dataset to understand what we are working with.
+        divider_line()
+
+        st.write('Let\'s take a look at the dataset info to understand what we are working with.')
         # Capture the df.info() output
         buffer = io.StringIO()
         titanic_df.info(buf=buffer)
@@ -541,9 +543,13 @@ st.dataframe(titanic_df.head(), hide_index=True)
         # Display in Streamlit
         st.text(titanic_df_info)
 
+        st.write('When working with a new dataset it can be helpful to understand the data overall. This info is showing us how many columns there are. The names of those columns. How many non-null values there are. Non-null means not blank. It appears there are only a few columns that have missing data. That last piece is the type of data that the column contains.')
+
         return titanic_df
         
     def pie_charts(titanic_df:pd.DataFrame):
+        divider_line()
+
         # Rename Sex to Gender
         titanic_df.rename(columns={'Sex':'Gender'}, inplace = True)
 
@@ -565,9 +571,34 @@ st.dataframe(titanic_df.head(), hide_index=True)
 
         st.altair_chart(pclass_chart, theme = None)
 
+        with st.expander("How did we make these charts from the data?"):
+            code = ''' # We used this alt.Chart function to create the chart. The .mark_arc() piece tells the function that we want a pie chart.
+gender_chart = alt.Chart(titanic_df).mark_arc().encode(
+    theta=alt.Theta(field='Gender', type='nominal', aggregate='count'),
+    color=alt.Color('Gender:N'),
+    tooltip=[alt.Tooltip('Gender:N'), alt.Tooltip('count():Q')] # This tooltip allows you to hover the actual chart and see some information.
+).properties(title = 'Gender Distribution') # This title property allows us to choose the title for the chart.
+
+# Next, we display the chart in the app.
+st.altair_chart(gender_chart, theme = None)
+
+
+# Pclass pie chart
+pclass_chart = alt.Chart(titanic_df).mark_arc().encode(
+    theta=alt.Theta(field='Pclass', type='nominal', aggregate='count'),
+    color=alt.Color('Pclass:N'),
+    tooltip=[alt.Tooltip('Pclass:N'), alt.Tooltip('count():Q')]
+).properties(title = 'Pclass Counts')
+
+st.altair_chart(pclass_chart, theme = None)
+        '''
+            st.code(code, language="python")
+
 
     def class_data():
-        pass
+        divider_line()
+
+        # 
 
     def pre_processing():
         pass
