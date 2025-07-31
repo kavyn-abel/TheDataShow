@@ -498,6 +498,9 @@ col3.metric("Box Office Margin", f"{genre_bom_df1:,}")
 
 class Titanic:
     def load_titanic_data():
+        st.write('Alright, the Titanic!')
+        st.write('In this section we are looking at passenger data from the Titanic which sank in the North Atlantic Ocean on April 15, 1912.')
+
         # Open the CSV file in read mode
         with open("titanic_dataset.csv", "r", encoding="utf-8") as f:
             csv_raw = f.read()  # Read the full content as a string
@@ -517,18 +520,48 @@ class Titanic:
         st.write('Here\'s how that data looks brought into a dataframe with Python code:')
 
         titanic_df = pd.read_csv('titanic_dataset.csv')
-        st.table(titanic_df.head())
+        st.dataframe(titanic_df.head(), hide_index=True)
 
         with st.expander("How did we bring that data into Python?"):
             code = ''' # We read in the data into a dataframe from a csv file.
 titanic_df = pd.read_csv('titanic_dataset.csv')
 
 # Then, we displayed the first 5 rows of data to you in the app.
-st.table(titanic_df.head())
+st.dataframe(titanic_df.head(), hide_index=True)
         '''
             st.code(code, language="python")
 
             return titanic_df
+        
+    def pie_charts(titanic_df:pd.DataFrame):
+        # Rename Sex to Gender
+        titanic_df.rename(columns={'Sex':'Gender'}, inplace = True)
+
+        # Look at gender data in a pie chart
+        alt.Chart(titanic_df).mark_arc().encode(
+            theta=alt.Theta(field='Gender', type='nominal', aggregate='count'),
+            color=alt.Color('Gender:N'),
+            tooltip=[alt.Tooltip('Gender:N'), alt.Tooltip('count():Q')]
+        ).properties(title = 'Gender Distribution')
+
+        # Pclass pie chart
+        alt.Chart(titanic_df).mark_arc().encode(
+            theta=alt.Theta(field='Pclass', type='nominal', aggregate='count'),
+            color=alt.Color('Pclass:N'),
+            tooltip=[alt.Tooltip('Pclass:N'), alt.Tooltip('count():Q')]
+        ).properties(title = 'Pclass Counts')
+
+        # Let's look at the info of the dataframe 
+        st.write(titanic_df.info())
+
+    def class_data():
+        pass
+
+    def pre_processing():
+        pass
+
+    def machine_learning():
+        pass
 
 
 topic = st.selectbox(
@@ -625,3 +658,5 @@ elif topic == '🍿 Movies':
 
 elif topic == '⚓ The Titanic':
     titanic_df = Titanic.load_titanic_data()
+
+    Titanic.pie_charts(titanic_df)
