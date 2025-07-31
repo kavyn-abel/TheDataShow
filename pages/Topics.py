@@ -496,10 +496,44 @@ col3.metric("Box Office Margin", f"{genre_bom_df1:,}")
             st.code(code, language="python")
 
 
+class Titanic:
+    def load_titanic_data():
+        # Open the CSV file in read mode
+        with open("titanic_dataset.csv", "r", encoding="utf-8") as f:
+            csv_raw = f.read()  # Read the full content as a string
+
+        # Split the raw CSV into lines
+        lines = csv_raw.splitlines()
+
+        # Limit to the first N lines (e.g., header + 5 rows)
+        row_limit = 3
+        limited_csv_raw = "\n".join(lines[:row_limit+1])  # +1 to include header
+
+        # Display the limited content
+        st.text_area(f"Here are the first {row_limit} rows of the raw data:", limited_csv_raw, height=200)
+
+        st.write('Kind of hard to follow, right? We\'ll bring that data in with Python code.')
+
+        st.write('Here\'s how that data looks brought into a dataframe with Python code:')
+
+        titanic_df = pd.read_csv('titanic_dataset.csv')
+        st.table(titanic_df.head())
+
+        with st.expander("How did we bring that data into Python?"):
+            code = ''' # We read in the data into a dataframe from a csv file.
+titanic_df = pd.read_csv('titanic_dataset.csv')
+
+# Then, we displayed the first 5 rows of data to you in the app.
+st.table(titanic_df.head())
+        '''
+            st.code(code, language="python")
+
+            return titanic_df
+
 
 topic = st.selectbox(
     "Pick a Topic",
-    ("Select a topic", "📅 Birthdays", "🍿 Movies"), # , "⚓ The Titanic"
+    ("Select a topic", "📅 Birthdays", "🍿 Movies", "⚓ The Titanic"),
     index=0
 )
 
@@ -588,3 +622,6 @@ elif topic == '🍿 Movies':
         st.balloons()
 
     # Could show images of movies in some places too
+
+elif topic == '⚓ The Titanic':
+    titanic_df = Titanic.load_titanic_data()
