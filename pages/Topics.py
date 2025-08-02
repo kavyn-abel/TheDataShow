@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import io
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 
 # Set the page wide to help with the squished dataframes.
 # st.set_page_config(layout="wide")
@@ -514,7 +517,7 @@ class Titanic:
         limited_csv_raw = "\n".join(lines[:row_limit+1])  # +1 to include header
 
         # Display the limited content
-        st.text_area(f"Here are the first {row_limit} rows of the raw data:", limited_csv_raw, height=125)
+        st.text_area(f"Here are the first {row_limit} rows of the raw data:", limited_csv_raw, height=150)
 
         st.write('Kind of hard to follow, right? We\'ll bring that data in with Python code.')
 
@@ -545,13 +548,13 @@ st.dataframe(titanic_df.head(), hide_index=True)
 
         st.write('When working with a new dataset it can be helpful to understand the data overall. This info is showing us how many columns there are. The names of those columns. How many non-null values there are. Non-null means not blank. It appears there are only a few columns that have missing data. That last piece is the type of data that the column contains.')
 
+        # Rename Sex to Gender
+        titanic_df.rename(columns={'Sex':'Gender'}, inplace = True)
+
         return titanic_df
         
     def pie_charts(titanic_df:pd.DataFrame):
         divider_line()
-
-        # Rename Sex to Gender
-        titanic_df.rename(columns={'Sex':'Gender'}, inplace = True)
 
         # Look at gender data in a pie chart
         gender_chart = alt.Chart(titanic_df).mark_arc().encode(
@@ -595,16 +598,76 @@ st.altair_chart(pclass_chart, theme = None)
             st.code(code, language="python")
 
 
-    def class_data():
+    def class_data(titanic_df:pd.DataFrame):
         divider_line()
 
-        # 
+        # Was a certain class more likely to survive?
+        st.write('As we saw in the pie chart there are three classes of passengers. First class, Second class, and Third class. Were passengers of a certain class more likely to survive?')
+        st.write('Let\'s find out.')
 
-    def pre_processing():
-        pass
+        # Let's sum survived by pclass
+        pclass_df = titanic_df.copy()
+        pclass_df1 = pclass_df[['Pclass', 'Survived']]
+        pclass_df2 = pclass_df1.groupby('Pclass')['Survived'].sum()
+        st.dataframe(pclass_df2)
 
-    def machine_learning():
-        pass
+        class_count_df = pclass_df.groupby('Pclass')['Survived'].count()
+        st.dataframe(class_count_df)
+
+        survival_rate_df = pclass_df2 / class_count_df
+
+        # Combine into a DataFrame
+        class_survival_df = pd.DataFrame({
+            'Total': class_count_df,
+            'Survived': pclass_df2,
+            'SurvivalRate': survival_rate_df
+        }).reset_index()
+
+        st.dataframe(class_survival_df.head())
+
+    def pre_processing(titanic_df:pd.DataFrame):
+        divider_line()
+        titanic_df1 = titanic_df.copy()
+
+        st.write('Explain why we are encoding Gender for machine learning.')
+
+        # Encode gender to female: 1, male: 0
+        titanic_df1['Gender'] = titanic_df1['Gender'].map({'male': 0, 'female': 1})
+
+        st.write('Explain that we don\'t want null values, and we are choosing to fill the null in a way we feel make sense for the age column of data.')
+        # This is a data cleaning technique as don't want to have null values for machine learning.
+        # Fill missing age with median
+        titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
+
+        return titanic_df1
+
+    def machine_learning(titanic_df1:pd.DataFrame):
+        divider_line()
+
+        st.write('Introduce machine learning super basic.')
+        # Select features and target (not using cabin or embarked which had null values)
+        features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
+        X = titanic_df1[features]
+        y = titanic_df1['Survived']
+
+        # Split into training and validation sets
+        X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
+
+        # Train model
+        model = LogisticRegression(max_iter=1000)
+        model.fit(X_train, y_train)
+
+        # Predict and evaluate
+        y_pred = model.predict(X_val)
+        accuracy = accuracy_score(y_val, y_pred)
+
+        st.write(f'Accuracy is: {accuracy}')
+
+        coefficients = pd.DataFrame({
+            'Feature': features,
+            'Coefficient': model.coef_[0]
+        })
+        st.dataframe(coefficients)
 
 
 topic = st.selectbox(
@@ -703,3 +766,9 @@ elif topic == '⚓ The Titanic':
     titanic_df = Titanic.load_titanic_data()
 
     Titanic.pie_charts(titanic_df)
+
+    Titanic.class_data(titanic_df)
+
+    titanic_df1 = Titanic.pre_processing(titanic_df)
+
+    Titanic.machine_learning(titanic_df1)
