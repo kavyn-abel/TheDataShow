@@ -623,6 +623,7 @@ st.altair_chart(pclass_chart, theme = None)
             'SurvivalRate': survival_rate_df
         }).reset_index()
 
+        st.write('Show the class survival rates.')
         st.dataframe(class_survival_df.head())
 
     def pre_processing(titanic_df:pd.DataFrame):
