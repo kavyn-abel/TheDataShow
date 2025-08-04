@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import io
-# from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
 # from sklearn.linear_model import LogisticRegression
 # from sklearn.metrics import accuracy_score
 
@@ -773,3 +773,4 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     # Titanic.machine_learning(titanic_df1)
+
