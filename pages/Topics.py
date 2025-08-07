@@ -626,8 +626,8 @@ st.altair_chart(pclass_chart, theme = None)
 
         # Combine into a DataFrame
         class_survival_df = pd.DataFrame({
-            'Total': class_count_df1,
-            'Survived': pclass_df3,
+            'Total': class_count_df,
+            'Survived': pclass_df2,
             'SurvivalRate': survival_rate_df
         }).reset_index()
 
@@ -781,6 +781,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
