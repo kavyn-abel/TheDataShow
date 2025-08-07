@@ -625,11 +625,17 @@ st.altair_chart(pclass_chart, theme = None)
         survival_rate_df = pclass_df2 / class_count_df
 
         # Combine into a DataFrame
-        class_survival_df = pd.DataFrame({
-            'Total': class_count_df,
-            'Survived': pclass_df2,
-            'SurvivalRate': survival_rate_df
-        }).reset_index()
+        # class_survival_df = pd.DataFrame({
+        #     'Total': class_count_df,
+        #     'Survived': pclass_df2,
+        #     'SurvivalRate': survival_rate_df
+        # }).reset_index()
+
+        # Combine all into a single DataFrame using join
+        class_survival_df = class_count_df.join(pclass_df2).join(survival_rate_df)
+        class_survival_df.columns = ['Passenger_Count', 'Number_Survived', 'Survival_Rate']
+        class_survival_df = class_survival_df.reset_index()
+
 
         st.write('Show the class survival rates.')
         st.dataframe(class_survival_df.head())
@@ -781,6 +787,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
