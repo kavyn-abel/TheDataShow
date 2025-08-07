@@ -611,13 +611,14 @@ st.altair_chart(pclass_chart, theme = None)
         st.write('As we saw in the pie chart there are three classes of passengers. First class, Second class, and Third class. Were passengers of a certain class more likely to survive?')
         st.write('Let\'s find out.')
 
+        pclass_df = titanic_df.copy()
+
         # Get the count of passengers for each class
         class_count_df = pclass_df.groupby('Pclass')['Survived'].count()
         class_count_df1 = class_count_df.rename_columns({'Survived':'Passenger Count'})
         st.dataframe(class_count_df1)
 
         # Let's sum survived by pclass
-        pclass_df = titanic_df.copy()
         pclass_df1 = pclass_df[['Pclass', 'Survived']]
         pclass_df2 = pclass_df1.groupby('Pclass')['Survived'].sum()
         pclass_df3 = pclass_df2.rename_columns({'Survived':'Number Survived'})
@@ -782,6 +783,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
