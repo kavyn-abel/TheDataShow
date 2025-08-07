@@ -615,18 +615,14 @@ st.altair_chart(pclass_chart, theme = None)
 
         # Get the count of passengers for each class
         class_count_df = pclass_df.groupby('Pclass').agg(Passenger_Count = ('Survived', 'count'))
-        st.write('Test here')
-        # class_count_df1 = class_count_df.rename(columns = {'Survived':'Passenger Count'})
         st.dataframe(class_count_df)
-        st.write('test here too')
 
         # Let's sum survived by pclass
         pclass_df1 = pclass_df[['Pclass', 'Survived']]
-        pclass_df2 = pclass_df1.groupby('Pclass')['Survived'].sum()
-        pclass_df3 = pclass_df2.rename(columns = {'Survived':'Number Survived'})
-        st.dataframe(pclass_df3)
+        pclass_df2 = pclass_df1.groupby('Pclass').agg(Number_Survived = ('Survived', 'sum'))
+        st.dataframe(pclass_df2)
 
-        survival_rate_df = pclass_df3 / class_count_df1
+        survival_rate_df = pclass_df2 / class_count_df
 
         # Combine into a DataFrame
         class_survival_df = pd.DataFrame({
@@ -785,6 +781,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
