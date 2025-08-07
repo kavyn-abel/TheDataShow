@@ -617,7 +617,7 @@ st.altair_chart(pclass_chart, theme = None)
         class_count_df = pclass_df.groupby('Pclass').agg(Passenger_Count = ('Survived', 'count'))
         st.write('Test here')
         # class_count_df1 = class_count_df.rename(columns = {'Survived':'Passenger Count'})
-        st.dataframe(class_count_df1)
+        st.dataframe(class_count_df)
         st.write('test here too')
 
         # Let's sum survived by pclass
@@ -785,6 +785,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
