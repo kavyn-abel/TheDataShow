@@ -503,7 +503,7 @@ col3.metric("Box Office Margin", f"{genre_bom_df1:,}")
 class Titanic:
     def load_titanic_data():
         st.write('Alright, the Titanic!')
-        st.write('In this section we are looking at passenger data from the Titanic which sank in the North Atlantic Ocean on April 15, 1912.')
+        st.write('In this section we are looking at passenger data from the Titanic, which sank in the North Atlantic Ocean on April 15, 1912.')
 
         # Open the CSV file in read mode
         with open("titanic_dataset.csv", "r", encoding="utf-8") as f:
@@ -556,6 +556,8 @@ st.dataframe(titanic_df.head(), hide_index=True)
     def pie_charts(titanic_df:pd.DataFrame):
         divider_line()
 
+        st.write('Data can be visualized ans help us gain more understanding and insight than we can from looking at all the individual rows of data. Here are some pie charts that help us learn more the gender and class distribution of the passengers we have. (You can hover over each section in the chart for more info.)')
+
         # Look at gender data in a pie chart
         gender_chart = alt.Chart(titanic_df).mark_arc().encode(
             theta=alt.Theta(field='Gender', type='nominal', aggregate='count'),
@@ -565,6 +567,8 @@ st.dataframe(titanic_df.head(), hide_index=True)
 
         st.altair_chart(gender_chart, theme = None)
 
+        st.write('Here we can see that there are more males than females aboard the titanic')
+
         # Pclass pie chart
         pclass_chart = alt.Chart(titanic_df).mark_arc().encode(
             theta=alt.Theta(field='Pclass', type='nominal', aggregate='count'),
@@ -573,6 +577,8 @@ st.dataframe(titanic_df.head(), hide_index=True)
         ).properties(title = 'Pclass Counts')
 
         st.altair_chart(pclass_chart, theme = None)
+
+        st.write('This chart shows us that there are much more third class passengers than first and second class.')
 
         with st.expander("How did we make these charts from the data?"):
             code = ''' # We used this alt.Chart function to create the chart. The .mark_arc() piece tells the function that we want a pie chart.
@@ -605,21 +611,24 @@ st.altair_chart(pclass_chart, theme = None)
         st.write('As we saw in the pie chart there are three classes of passengers. First class, Second class, and Third class. Were passengers of a certain class more likely to survive?')
         st.write('Let\'s find out.')
 
+        # Get the count of passengers for each class
+        class_count_df = pclass_df.groupby('Pclass')['Survived'].count()
+        class_count_df1 = class_count_df.rename_columns({'Survived':'Passenger Count'})
+        st.dataframe(class_count_df1)
+
         # Let's sum survived by pclass
         pclass_df = titanic_df.copy()
         pclass_df1 = pclass_df[['Pclass', 'Survived']]
         pclass_df2 = pclass_df1.groupby('Pclass')['Survived'].sum()
-        st.dataframe(pclass_df2)
+        pclass_df3 = pclass_df2.rename_columns({'Survived':'Number Survived'})
+        st.dataframe(pclass_df3)
 
-        class_count_df = pclass_df.groupby('Pclass')['Survived'].count()
-        st.dataframe(class_count_df)
-
-        survival_rate_df = pclass_df2 / class_count_df
+        survival_rate_df = pclass_df3 / class_count_df1
 
         # Combine into a DataFrame
         class_survival_df = pd.DataFrame({
-            'Total': class_count_df,
-            'Survived': pclass_df2,
+            'Total': class_count_df1,
+            'Survived': pclass_df3,
             'SurvivalRate': survival_rate_df
         }).reset_index()
 
@@ -773,5 +782,6 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
