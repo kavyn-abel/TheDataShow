@@ -622,7 +622,13 @@ st.altair_chart(pclass_chart, theme = None)
         pclass_df2 = pclass_df1.groupby('Pclass').agg(Number_Survived = ('Survived', 'sum'))
         st.dataframe(pclass_df2)
 
-        survival_rate_df = pclass_df2 / class_count_df
+        # Join the dataframes
+        survival_rate_df = pd.merge(left = class_count_df, right = pclass_df2, on = 'Pclass', how = 'left')
+
+        # Create a calculated column for the survival rate
+        survival_rate_df['Survival_Rate'] = survival_rate_df['Number_Survived'] / survival_rate_df['Passenger_Count']
+
+        # survival_rate_df = pclass_df2 / class_count_df
 
         # Combine into a DataFrame
         # class_survival_df = pd.DataFrame({
@@ -631,14 +637,8 @@ st.altair_chart(pclass_chart, theme = None)
         #     'SurvivalRate': survival_rate_df
         # }).reset_index()
 
-        # Combine all into a single DataFrame using join
-        class_survival_df = class_count_df.join(pclass_df2).join(survival_rate_df)
-        class_survival_df.columns = ['Passenger_Count', 'Number_Survived', 'Survival_Rate']
-        class_survival_df = class_survival_df.reset_index()
-
-
         st.write('Show the class survival rates.')
-        st.dataframe(class_survival_df.head())
+        st.dataframe(survival_rate_df.head())
 
     def pre_processing(titanic_df:pd.DataFrame):
         divider_line()
@@ -787,6 +787,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
