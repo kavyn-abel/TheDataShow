@@ -546,7 +546,7 @@ st.dataframe(titanic_df.head(), hide_index=True)
         # Display in Streamlit
         st.text(titanic_df_info)
 
-        st.write('When working with a new dataset it can be helpful to understand the data overall. This info is showing us how many columns there are. The names of those columns. How many non-null values there are. Non-null means not blank. It appears there are only a few columns that have missing data. That last piece is the type of data that the column contains.')
+        st.write('When working with a new dataset it can be helpful to understand the data overall. This info is showing us how many columns there are. The names of those columns. How many non-null (or empty) values there are. It appears there are only a few columns that have missing data. That last piece is the type of data that the column contains.')
 
         # Rename Sex to Gender
         titanic_df.rename(columns={'Sex':'Gender'}, inplace = True)
@@ -557,7 +557,8 @@ st.dataframe(titanic_df.head(), hide_index=True)
         divider_line()
 
         st.write('Data can be visualized ans help us gain more understanding and insight than we can from looking at all the individual rows of data. Here are some pie charts that help us learn more the gender and class distribution of the passengers we have. (You can hover over each section in the chart for more info.)')
-
+        st.write('Here we can see that there are more males than females aboard the titanic')
+        
         # Look at gender data in a pie chart
         gender_chart = alt.Chart(titanic_df).mark_arc().encode(
             theta=alt.Theta(field='Gender', type='nominal', aggregate='count'),
@@ -567,7 +568,7 @@ st.dataframe(titanic_df.head(), hide_index=True)
 
         st.altair_chart(gender_chart, theme = None)
 
-        st.write('Here we can see that there are more males than females aboard the titanic')
+        st.write('This chart shows us that there are much more third class passengers than first and second class.')
 
         # Pclass pie chart
         pclass_chart = alt.Chart(titanic_df).mark_arc().encode(
@@ -577,8 +578,6 @@ st.dataframe(titanic_df.head(), hide_index=True)
         ).properties(title = 'Pclass Counts')
 
         st.altair_chart(pclass_chart, theme = None)
-
-        st.write('This chart shows us that there are much more third class passengers than first and second class.')
 
         with st.expander("How did we make these charts from the data?"):
             code = ''' # We used this alt.Chart function to create the chart. The .mark_arc() piece tells the function that we want a pie chart.
@@ -657,10 +656,10 @@ st.altair_chart(pclass_chart, theme = None)
 
         with st.expander("How did we do this?"):
             code = ''' # We encoded the gender column to female: 1, male: 0 like this:
-    titanic_df1['Gender'] = titanic_df1['Gender'].map({'male': 0, 'female': 1})
+titanic_df1['Gender'] = titanic_df1['Gender'].map({'male': 0, 'female': 1})
 
-    # Then we filled in the blank age values with the median age.
-    titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
+# Then we filled in the blank age values with the median age.
+titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
         '''
             st.code(code, language="python")
 
@@ -685,7 +684,7 @@ st.altair_chart(pclass_chart, theme = None)
         model.fit(X_train, y_train)
 
         with st.expander("Here is the code for the machine learning process."):
-            code = '''         # Select features and target (not using cabin or embarked which had null values)
+            code = ''' # Select features and target (not using cabin or embarked which had null values)
 features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
 X = titanic_df1[features]
 y = titanic_df1['Survived']
@@ -705,7 +704,10 @@ model.fit(X_train, y_train)
         y_pred = model.predict(X_val)
         accuracy = accuracy_score(y_val, y_pred)
 
+        st.write('Here is the level of accuracy that our model got when we ran through some data that didn\'t have the answers of whether they had survived or not. Then we compared the prediceted results versus the actual data of survival.')
         st.write(f'Accuracy is: {accuracy}')
+
+        st.write('Write something here explaining the coefficients and what they mean. (I believe I have more about it in my ipynb notebook.)')
 
         coefficients = pd.DataFrame({
             'Feature': features,
@@ -831,6 +833,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
