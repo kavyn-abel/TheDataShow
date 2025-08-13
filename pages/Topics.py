@@ -670,6 +670,8 @@ st.altair_chart(pclass_chart, theme = None)
         divider_line()
 
         st.write('Introduce machine learning super basic.')
+        st.write('The basic idea of machine learning is that you give an algorithm some of your data (not all of it). You give it the columns of data it will learn from to predict the target column that you give it. After the model is trained (or has learned from the data) it can then predict the outcome- the target- based on the inputs given to it.')
+        st.write('We will select features to be used for the model to predict whether a passenger will survive or not. The features are: \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'. The target will be the column \'Survived\'')
         # Select features and target (not using cabin or embarked which had null values)
         features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
         X = titanic_df1[features]
@@ -682,6 +684,23 @@ st.altair_chart(pclass_chart, theme = None)
         model = LogisticRegression(max_iter=1000)
         model.fit(X_train, y_train)
 
+        with st.expander("Here is the code for the machine learning process."):
+            code = '''         # Select features and target (not using cabin or embarked which had null values)
+features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
+X = titanic_df1[features]
+y = titanic_df1['Survived']
+
+# Split into training and validation sets
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train model
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+        '''
+            st.code(code, language="python")
+
+        st.write('Now that the model is trained, we can use it to predict whether passengers will survive based on their \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'.')
+
         # Predict and evaluate
         y_pred = model.predict(X_val)
         accuracy = accuracy_score(y_val, y_pred)
@@ -693,6 +712,21 @@ st.altair_chart(pclass_chart, theme = None)
             'Coefficient': model.coef_[0]
         })
         st.dataframe(coefficients)
+
+            with st.expander("Here is the code for the machine learning process."):
+            code = ''' # Predict and evaluate
+y_pred = model.predict(X_val)
+accuracy = accuracy_score(y_val, y_pred)
+
+st.write(f'Accuracy is: {accuracy}')
+
+coefficients = pd.DataFrame({
+    'Feature': features,
+    'Coefficient': model.coef_[0]
+})
+st.dataframe(coefficients)    
+        '''
+            st.code(code, language="python")
 
 
 topic = st.selectbox(
@@ -797,6 +831,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
