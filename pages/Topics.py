@@ -684,20 +684,20 @@ st.altair_chart(pclass_chart, theme = None)
         model = LogisticRegression(max_iter=1000)
         model.fit(X_train, y_train)
 
-#         with st.expander("Here is the code for the machine learning process."):
-#             code = '''         # Select features and target (not using cabin or embarked which had null values)
-# features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
-# X = titanic_df1[features]
-# y = titanic_df1['Survived']
+        with st.expander("Here is the code for the machine learning process."):
+            code = '''         # Select features and target (not using cabin or embarked which had null values)
+features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
+X = titanic_df1[features]
+y = titanic_df1['Survived']
 
-# # Split into training and validation sets
-# X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
+# Split into training and validation sets
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# # Train model
-# model = LogisticRegression(max_iter=1000)
-# model.fit(X_train, y_train)
-#         '''
-#             st.code(code, language="python")
+# Train model
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+        '''
+            st.code(code, language="python")
 
         st.write('Now that the model is trained, we can use it to predict whether passengers will survive based on their \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'.')
 
@@ -831,6 +831,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
