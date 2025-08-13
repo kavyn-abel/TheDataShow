@@ -644,15 +644,25 @@ st.altair_chart(pclass_chart, theme = None)
         divider_line()
         titanic_df1 = titanic_df.copy()
 
-        st.write('Explain why we are encoding Gender for machine learning.')
+        st.write('Machine learning models rely heavily on mathematical algorithms. So, we need to work with only numerical data, and ensure that no null or empty values are in our dataset.')
+        st.write('For that reason we will encode the gender column to a 1 and 0. 1 for female and 0 for male.')
 
         # Encode gender to female: 1, male: 0
         titanic_df1['Gender'] = titanic_df1['Gender'].map({'male': 0, 'female': 1})
 
-        st.write('Explain that we don\'t want null values, and we are choosing to fill the null in a way we feel make sense for the age column of data.')
+        st.write('Earlier we looked at our dataset info and saw that our Age column had some null values. To work with the machine learning model we want to work out those null values in a way that makes sense for the column. In this case, with Age, I feel it would work well to fill in the empty values with the median age of the passengers.')
         # This is a data cleaning technique as don't want to have null values for machine learning.
         # Fill missing age with median
         titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
+
+        with st.expander("How did we do this?"):
+            code = ''' # We encoded the gender column to female: 1, male: 0 like this:
+    titanic_df1['Gender'] = titanic_df1['Gender'].map({'male': 0, 'female': 1})
+
+    # Then we filled in the blank age values with the median age.
+    titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
+        '''
+            st.code(code, language="python")
 
         return titanic_df1
 
@@ -787,6 +797,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
