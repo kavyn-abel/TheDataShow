@@ -713,20 +713,20 @@ model.fit(X_train, y_train)
         })
         st.dataframe(coefficients)
 
-#             with st.expander("Here is the code for the machine learning process."):
-#             code = ''' # Predict and evaluate
-# y_pred = model.predict(X_val)
-# accuracy = accuracy_score(y_val, y_pred)
+        with st.expander("Here is the code for the machine learning process."):
+            code = ''' # Predict and evaluate
+y_pred = model.predict(X_val)
+accuracy = accuracy_score(y_val, y_pred)
 
-# st.write(f'Accuracy is: {accuracy}')
+st.write(f'Accuracy is: {accuracy}')
 
-# coefficients = pd.DataFrame({
-#     'Feature': features,
-#     'Coefficient': model.coef_[0]
-# })
-# st.dataframe(coefficients)    
-#         '''
-#             st.code(code, language="python")
+coefficients = pd.DataFrame({
+    'Feature': features,
+    'Coefficient': model.coef_[0]
+})
+st.dataframe(coefficients)    
+        '''
+            st.code(code, language="python")
 
 
 topic = st.selectbox(
@@ -831,6 +831,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
