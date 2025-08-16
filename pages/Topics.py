@@ -835,7 +835,7 @@ elif topic == '🍿 Movies':
 
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🎊 Want to try another path? Just pick another topic at the top.")
-        st.confetti()
+        st.balloons()
 
     # Could show images of movies in some places too
 
@@ -857,6 +857,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
