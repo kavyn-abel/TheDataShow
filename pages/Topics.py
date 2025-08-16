@@ -653,10 +653,10 @@ st.altair_chart(pclass_chart, theme = None)
         divider_line()
         titanic_df1 = titanic_df.copy()
 
-        st.write('Another facet of data science is machine learning. I will simply explain what this is later in this section. For now, here are some important details regarding preparing your data before the machine learning happens.')
+        st.write('Another facet of data science is machine learning. I will simply explain what this is later. For now, here are some important details regarding preparing your data before the machine learning happens.')
 
-        st.write('Machine learning models rely heavily on mathematical algorithms. So, we need to work with only numerical data, and ensure that no null (or empty) values are in our dataset.')
-        st.write('For that reason we will encode the gender column to a 1 and 0. 1 for female and 0 for male.')
+        st.write('Machine learning models rely heavily on mathematical algorithms. So, we need to ensure that we are working with only numerical data, and make sure that no null (or empty) values are in our dataset.')
+        st.write('For that reason we will encode the gender column to a 1 and 0. 1 for female, and 0 for male.')
 
         # Encode gender to female: 1, male: 0
         titanic_df1['Gender'] = titanic_df1['Gender'].map({'male': 0, 'female': 1})
@@ -680,8 +680,8 @@ titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
     def machine_learning(titanic_df1:pd.DataFrame):
         divider_line()
 
-        st.write('The basic idea of machine learning is that you give an algorithm some of your data (not all of it). You give it the columns of data it will learn from to predict the target column that you give it. After the model is trained (or has learned from the data) it can then predict the outcome- the target- based on the inputs given to it.')
-        st.write('We will select features to be used for the model to predict whether a passenger will survive or not. The features I\'ve chosen are: \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'. The target will be the column \'Survived\'.')
+        st.write('The basic idea of machine learning is that you give the computer data, you let it practice with the data- allowing it to learn and identify patterns in the data that help reach the desired result. Then have it make predictions or decisions without being told the answer.')
+        st.write('We will select the data to be used for the model to predict whether a passenger will survive or not. The features I\'ve chosen are: \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'. The target will be the column \'Survived\'.')
         # Select features and target (not using cabin or embarked which had null values)
         features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
         X = titanic_df1[features]
@@ -847,6 +847,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
