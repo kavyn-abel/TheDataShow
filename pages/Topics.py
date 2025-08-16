@@ -654,7 +654,9 @@ st.altair_chart(pclass_chart, theme = None)
         divider_line()
         titanic_df1 = titanic_df.copy()
 
-        st.write('Machine learning models rely heavily on mathematical algorithms. So, we need to work with only numerical data, and ensure that no null or empty values are in our dataset.')
+        st.write('Another facet of data science is machine learning. I will simply explain what this is later in this section. For now, here are some important details regarding preparing your data before the machine learning happens.')
+
+        st.write('Machine learning models rely heavily on mathematical algorithms. So, we need to work with only numerical data, and ensure that no null (or empty) values are in our dataset.')
         st.write('For that reason we will encode the gender column to a 1 and 0. 1 for female and 0 for male.')
 
         # Encode gender to female: 1, male: 0
@@ -679,9 +681,8 @@ titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
     def machine_learning(titanic_df1:pd.DataFrame):
         divider_line()
 
-        st.write('Introduce machine learning super basic.')
         st.write('The basic idea of machine learning is that you give an algorithm some of your data (not all of it). You give it the columns of data it will learn from to predict the target column that you give it. After the model is trained (or has learned from the data) it can then predict the outcome- the target- based on the inputs given to it.')
-        st.write('We will select features to be used for the model to predict whether a passenger will survive or not. The features are: \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'. The target will be the column \'Survived\'.')
+        st.write('We will select features to be used for the model to predict whether a passenger will survive or not. The features I've chosen are: \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'. The target will be the column \'Survived\'.')
         # Select features and target (not using cabin or embarked which had null values)
         features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
         X = titanic_df1[features]
@@ -690,7 +691,7 @@ titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
         # Split into training and validation sets
         X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
-        # Train model
+        # Train the model
         model = LogisticRegression(max_iter=1000)
         model.fit(X_train, y_train)
 
@@ -709,14 +710,15 @@ model.fit(X_train, y_train)
         '''
             st.code(code, language="python")
 
-        st.write('Now that the model is trained, we can use it to predict whether passengers will survive based on their \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'.')
+        st.write('Now that the model is trained, we can use it to predict whether passengers will survive the Titanic based on their \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'.')
 
         # Predict and evaluate
         y_pred = model.predict(X_val)
-        accuracy = accuracy_score(y_val, y_pred)
+        # accuracy = accuracy_score(y_val, y_pred)
+        accuracy = round(accuracy_score(y_val, y_pred) * 100, 2)
 
-        st.write('Here is the level of accuracy that our model got when we ran through some data that didn\'t have the answers of whether they had survived or not. Then we compared the prediceted results versus the actual data of survival.')
-        st.write(f'Accuracy is: {accuracy}')
+        st.write('Here is the level of accuracy that our model got when we ran through some data that didn\'t have the answers of whether they had survived or not. We compared the prediceted results versus the actual survival result column of data.')
+        st.write(f'The accuracy of the model is: {accuracy} percent.')
 
         st.write('Write something here explaining the coefficients and what they mean. (I believe I have more about it in my ipynb notebook.)')
 
@@ -844,6 +846,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
