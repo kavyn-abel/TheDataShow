@@ -709,7 +709,7 @@ model.fit(X_train, y_train)
         '''
             st.code(code, language="python")
 
-        st.write('Now that the computer is trained (it has learned and practiced), we can use it to predict whether passengers will survive the Titanic based on their \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\' on its own (without the answers).')
+        st.write('Now that the computer is trained (it has learned and practiced), we can use it to predict whether passengers will survive the Titanic on its own (without the answers).')
 
         # Predict and evaluate
         y_pred = model.predict(X_val)
@@ -847,6 +847,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
