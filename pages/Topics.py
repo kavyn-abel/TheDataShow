@@ -714,11 +714,10 @@ model.fit(X_train, y_train)
 
         # Predict and evaluate
         y_pred = model.predict(X_val)
-        # accuracy = accuracy_score(y_val, y_pred)
         accuracy = round(accuracy_score(y_val, y_pred) * 100, 2)
 
         st.write('Here is the level of accuracy that our model got when we ran through some data that didn\'t have the answers of whether they had survived or not. We compared the prediceted results versus the actual survival result column of data.')
-        st.write(f'The accuracy of the model is: {accuracy} percent.')
+        st.write(f'The accuracy of the model is: {accuracy}%.')
 
         st.write('Write something here explaining the coefficients and what they mean. (I believe I have more about it in my ipynb notebook.)')
 
@@ -726,7 +725,10 @@ model.fit(X_train, y_train)
             'Feature': features,
             'Coefficient': model.coef_[0]
         })
+
+        st.write('Coefficients are')
         st.dataframe(coefficients)
+        st.write('Gender as a high positive coefficient means you are more likely to survive based on your gender- female in this case. And Class is negative, based on your class (third class) you are less likely to survive.')
 
         with st.expander("Here is the code for the machine learning process."):
             code = ''' # Predict and evaluate
@@ -846,6 +848,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
