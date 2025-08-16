@@ -556,7 +556,7 @@ st.dataframe(titanic_df.head(), hide_index=True)
     def pie_charts(titanic_df:pd.DataFrame):
         divider_line()
 
-        st.write('Data can be visualized ans help us gain more understanding and insight than we can from looking at all the individual rows of data. Here are some pie charts that help us learn more the gender and class distribution of the passengers we have. (You can hover over each section in the chart for more info.)')
+        st.write('Data can be visualized and help us gain more understanding and insight than we can from looking at all the individual rows of data. Here are some pie charts that help us learn more the gender and class distribution of the passengers of the Titanic. (You can hover over each section in the chart for more info.)')
         st.write('Here we can see that there are more males than females aboard the titanic')
         
         # Look at gender data in a pie chart
@@ -568,7 +568,7 @@ st.dataframe(titanic_df.head(), hide_index=True)
 
         st.altair_chart(gender_chart, theme = None)
 
-        st.write('This chart shows us that there are much more third class passengers than first and second class.')
+        st.write('This chart below shows us that there are much more third class passengers than first and second class.')
 
         # Pclass pie chart
         pclass_chart = alt.Chart(titanic_df).mark_arc().encode(
@@ -580,7 +580,8 @@ st.dataframe(titanic_df.head(), hide_index=True)
         st.altair_chart(pclass_chart, theme = None)
 
         with st.expander("How did we make these charts from the data?"):
-            code = ''' # We used this alt.Chart function to create the chart. The .mark_arc() piece tells the function that we want a pie chart.
+            code = ''' # We used this alt.Chart function to create the chart. The .mark_arc() piece 
+# tells the function that we want a pie chart.
 gender_chart = alt.Chart(titanic_df).mark_arc().encode(
     theta=alt.Theta(field='Gender', type='nominal', aggregate='count'),
     color=alt.Color('Gender:N'),
@@ -590,7 +591,6 @@ gender_chart = alt.Chart(titanic_df).mark_arc().encode(
 # Next, we display the chart in the app.
 st.altair_chart(gender_chart, theme = None)
 
-
 # Pclass pie chart
 pclass_chart = alt.Chart(titanic_df).mark_arc().encode(
     theta=alt.Theta(field='Pclass', type='nominal', aggregate='count'),
@@ -598,6 +598,7 @@ pclass_chart = alt.Chart(titanic_df).mark_arc().encode(
     tooltip=[alt.Tooltip('Pclass:N'), alt.Tooltip('count():Q')]
 ).properties(title = 'Pclass Counts')
 
+# Display in the app.
 st.altair_chart(pclass_chart, theme = None)
         '''
             st.code(code, language="python")
@@ -610,12 +611,14 @@ st.altair_chart(pclass_chart, theme = None)
         st.write('As we saw in the pie chart there are three classes of passengers. First class, Second class, and Third class. Were passengers of a certain class more likely to survive?')
         st.write('Let\'s find out.')
 
+        st.write('Here are the number of passengers in each class.')
         pclass_df = titanic_df.copy()
 
         # Get the count of passengers for each class
         class_count_df = pclass_df.groupby('Pclass').agg(Passenger_Count = ('Survived', 'count'))
         st.dataframe(class_count_df)
 
+        st.write('Here are the number of passengers that survived in each class.')
         # Let's sum survived by pclass
         pclass_df1 = pclass_df[['Pclass', 'Survived']]
         pclass_df2 = pclass_df1.groupby('Pclass').agg(Number_Survived = ('Survived', 'sum'))
@@ -636,8 +639,10 @@ st.altair_chart(pclass_chart, theme = None)
         #     'SurvivalRate': survival_rate_df
         # }).reset_index()
 
-        st.write('Show the class survival rates.')
+        st.write('Here\'s the data together also with the survival rates calculated.')
         st.dataframe(survival_rate_df.head())
+
+        st.write('From this information we can conclude that first class passengers were 38% more likely to survive than the third class passengers.')
 
     def pre_processing(titanic_df:pd.DataFrame):
         divider_line()
@@ -833,6 +838,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
