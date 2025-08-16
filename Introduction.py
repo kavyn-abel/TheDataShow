@@ -22,10 +22,9 @@ st.write('Image source: *https://www.geeksforgeeks.org/pandas/python-pandas-data
 st.write('Data scientists make charts to visualize data and help others understand patterns, trends, and other insights that may be helpful:')
 st.image('chart_types.png')
 st.write('Image source: *https://www.datamation.com/big-data/data-visualization-use-cases/*')
-st.write('Additionally, this app will show you how data scientists work with data in code to create new columns, sort data, filter it, and work with textual data. The image below shows some logos of tools that data scientists may use:')
+st.write('Additionally, this app will show you how data scientists work with data in code to create new columns, sort data, filter it, work with textual data, and perform machine learning. The image below shows some logos of tools that data scientists may use:')
 st.image('data_science_tools.png')
 st.write('Image source: *https://www.linkedin.com/pulse/data-science-full-stack-roadmap-2022-himanshu-ramchandani/*')
-st.write('Data scientists also use machine learning to train computers to make predictions with data.')
 
 # Use the data_science image I've saved here?
 
@@ -33,5 +32,6 @@ st.write('')
 st.write('Let\'s dive in.')
 st.write('Please select \'Topics\' in the sidebar at the left, and then choose a topic to explore.')
     
+
 
 
