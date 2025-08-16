@@ -726,7 +726,7 @@ model.fit(X_train, y_train)
             'Coefficient': model.coef_[0]
         })
 
-        st.write('Coefficients are numbers that show how important each feature is to a machine learning model's prediction.')
+        st.write('Coefficients are numbers that show how important each feature is to a machine learning model\'s prediction.')
         st.dataframe(coefficients)
         st.write('Gender as a high positive coefficient means you are more likely to survive based on your gender- female in this case. And Class is negative, based on your class (third class) you are less likely to survive.')
 
@@ -848,6 +848,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
