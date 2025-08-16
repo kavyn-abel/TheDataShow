@@ -834,8 +834,8 @@ elif topic == '🍿 Movies':
     st.write('By going through this movie data we\'ve seen how data scientists use Python code to massage the data to something useable. We\'ve seen the usefulness of sorting, filtering, feature engineering, visualizing, and regular expressions.')
 
     if st.button('Finished? Click Here.'):
-        st.success("Nice job exploring data! 🎉 Want to try another path? Just pick another topic at the top.")
-        st.balloons()
+        st.success("Nice job exploring data! 🎊 Want to try another path? Just pick another topic at the top.")
+        st.confetti()
 
     # Could show images of movies in some places too
 
@@ -850,9 +850,14 @@ elif topic == '⚓ The Titanic':
 
     Titanic.machine_learning(titanic_df1)
 
+     # What we've learned
+    divider_line()
+    st.write('By going through this Titanic data we\'ve seen how data scientists look at a datasets info, visualize data in pie charts, and use machine learning to make predictions.')
+
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
