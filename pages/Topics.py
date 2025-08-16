@@ -703,7 +703,7 @@ y = titanic_df1['Survived']
 # Split into training and validation sets
 X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Train model
+# Train the model
 model = LogisticRegression(max_iter=1000)
 model.fit(X_train, y_train)
         '''
@@ -847,6 +847,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
