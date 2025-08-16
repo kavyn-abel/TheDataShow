@@ -852,11 +852,12 @@ elif topic == '⚓ The Titanic':
 
      # What we've learned
     divider_line()
-    st.write('By going through this Titanic data we\'ve seen how data scientists look at a datasets info, visualize data in pie charts, and use machine learning to make predictions.')
+    st.write('By going through this Titanic data we\'ve seen how data scientists use Python code to look at a datasets info, visualize data in pie charts, and use machine learning to make predictions.')
 
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
