@@ -538,6 +538,7 @@ st.dataframe(titanic_df.head(), hide_index=True)
         divider_line()
 
         st.write('Let\'s take a look at the dataset info to understand what we are working with.')
+        st.write('When working with a new dataset it can be helpful to understand the data overall. This info below shows us how many columns there are, the names of those columns, and how many non-null (or empty) values there are. It appears there are only a few columns that have missing data. That last piece is the type of data that the column contains.')
         # Capture the df.info() output
         buffer = io.StringIO()
         titanic_df.info(buf=buffer)
@@ -545,8 +546,6 @@ st.dataframe(titanic_df.head(), hide_index=True)
 
         # Display in Streamlit
         st.text(titanic_df_info)
-
-        st.write('When working with a new dataset it can be helpful to understand the data overall. This info is showing us how many columns there are. The names of those columns. How many non-null (or empty) values there are. It appears there are only a few columns that have missing data. That last piece is the type of data that the column contains.')
 
         with st.expander("How do we see the info of a dataset in Python?"):
             code = ''' # We use the .info() command like this.
@@ -848,6 +847,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
