@@ -729,9 +729,9 @@ model.fit(X_train, y_train)
         st.write('A positive number shows that a column was more likely to contribute to survival, a negative number is less likely to contribute to survival. The larger the number (in magnitude- not positive or negative), the more it contributed.') 
         st.write('Gender has a high positive coefficient meaning a passenger is more likely to survive based on their gender- female in this case.')
         st.write('Class is negative, based on a passengers class (third class) they are less likely to survive.')
-        st.write('We saw this before when we looked at the class data we saw that the first class passengers survived more than third class passengers. But what about gender? What about the women surviving more than the men? Why might that be? Well in this event there was a woman and children first policy. Lifeboat access was prioritized for women and children. First class and second class women passengers would also have been closer to the lifeboats than the third class passengers. These factors contributed to their survivability.')
+        st.write('We saw this before when we looked at the class data we saw that the first class passengers survived more than third class passengers. But what about gender? What about the women surviving more than the men? Why might that be? Well in this event, there was a woman and children first policy. Lifeboat access was prioritized for women and children. First class and second class women passengers would also have been closer to the lifeboats than the third class passengers. These factors contributed to the Titanic passengers survivability.')
 
-        with st.expander("Here is the code for the machine learning process."):
+        with st.expander("Here is the code for the computers accuracy and coefficients."):
             code = ''' # Predict and evaluate
 y_pred = model.predict(X_val)
 accuracy = round(accuracy_score(y_val, y_pred) * 100, 2)
@@ -849,6 +849,11 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
+    if st.button('Finished? Click Here.'):
+        st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
+        st.snow()
+
 
 
 
