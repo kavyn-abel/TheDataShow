@@ -714,8 +714,8 @@ model.fit(X_train, y_train)
 
         # Predict and evaluate
         y_pred = model.predict(X_val)
-        # accuracy = accuracy_score(y_val, y_pred)
-        accuracy = round(accuracy_score(y_val, y_pred) * 100, 2)
+        accuracy = accuracy_score(y_val, y_pred)
+        # accuracy = round(accuracy_score(y_val, y_pred) * 100, 2)
 
         st.write('Here is the level of accuracy that our model got when we ran through some data that didn\'t have the answers of whether they had survived or not. We compared the prediceted results versus the actual survival result column of data.')
         st.write(f'The accuracy of the model is: {accuracy} percent.')
@@ -846,6 +846,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
