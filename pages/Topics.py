@@ -680,8 +680,8 @@ titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
     def machine_learning(titanic_df1:pd.DataFrame):
         divider_line()
 
-        st.write('Ok, so the basic idea of machine learning is that you give the computer data, you let it practice with the data- allowing it to learn and identify patterns in the data that help reach the desired result. Then have it make predictions or decisions without being told the answer.')
-        st.write('We will select the data to be used for the model to predict whether a passenger will survive or not. The features I\'ve chosen are: \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'. With this data the computer will be learning and then trying to predict whether a passenger would survive the Titanic, or not- so the target column is \'Survived\'.')
+        st.write('Ok, so the basic idea of machine learning is that you give the computer data, you let it practice with the data- allowing it to learn and identify patterns. Then have it make predictions or decisions without being told the answer.')
+        st.write('We will select the data to be used for the model to predict whether a passenger will survive or not. The features I\'ve chosen are: \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'. With this data the computer will be learning and then predicting whether a passenger would survive the Titanic, or not.')
         # Select features and target (not using cabin or embarked which had null values)
         features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
         X = titanic_df1[features]
@@ -709,7 +709,7 @@ model.fit(X_train, y_train)
         '''
             st.code(code, language="python")
 
-        st.write('Now that the model is trained (the computer has learned and practiced), we can use it to predict whether passengers will survive the Titanic based on their \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\' on its own (without the answers).')
+        st.write('Now that the computer is trained (it has learned and practiced), we can use it to predict whether passengers will survive the Titanic based on their \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\' on its own (without the answers).')
 
         # Predict and evaluate
         y_pred = model.predict(X_val)
@@ -717,17 +717,16 @@ model.fit(X_train, y_train)
 
         # st.write('Here is the level of accuracy that our model got when we ran through some data that didn\'t have the answers of whether they had survived or not. We compared the prediceted results versus the actual survival result column of data.')
         st.write(f'Here is the accuracy of the machine learning model: {accuracy}%.')
-
-        st.write('Write something here explaining the coefficients and what they mean. (I believe I have more about it in my ipynb notebook.)')
+        st.write('That\'s pretty good! 81% of the time the computer predicted correctly whether a passenger survived or didn\'t.')
 
         coefficients = pd.DataFrame({
             'Feature': features,
             'Coefficient': model.coef_[0]
         })
 
-        st.write('Coefficients are numbers that show how important each feature is to a machine learning model\'s prediction.')
+        st.write('Shown below are coefficients. Coefficients are numbers that show how important each column of data is to a machine learning model\'s (a computer\'s) prediction.')
         st.dataframe(coefficients)
-        st.write('Gender as a high positive coefficient means you are more likely to survive based on your gender- female in this case. And Class is negative, based on your class (third class) you are less likely to survive.')
+        st.write('A positive number shows that a column was more likely to contribute to survival, a negative number is less likely to contribute to survival. Gender as a high positive coefficient means you are more likely to survive based on your gender- female in this case. And Class is negative, based on your class (third class) you are less likely to survive.')
 
         with st.expander("Here is the code for the machine learning process."):
             code = ''' # Predict and evaluate
@@ -847,6 +846,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
