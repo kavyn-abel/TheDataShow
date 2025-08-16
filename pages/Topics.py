@@ -548,6 +548,12 @@ st.dataframe(titanic_df.head(), hide_index=True)
 
         st.write('When working with a new dataset it can be helpful to understand the data overall. This info is showing us how many columns there are. The names of those columns. How many non-null (or empty) values there are. It appears there are only a few columns that have missing data. That last piece is the type of data that the column contains.')
 
+        with st.expander("How do we see the info of a dataset in Python?"):
+            code = ''' # We use the .info() command like this.
+titanic_df.info()
+        '''
+            st.code(code, language="python")
+
         # Rename Sex to Gender
         titanic_df.rename(columns={'Sex':'Gender'}, inplace = True)
 
@@ -639,7 +645,7 @@ st.altair_chart(pclass_chart, theme = None)
         #     'SurvivalRate': survival_rate_df
         # }).reset_index()
 
-        st.write('Here\'s the data together also with the survival rates calculated.')
+        st.write('Here\'s the data together also containing the survival rates calculated.')
         st.dataframe(survival_rate_df.head())
 
         st.write('From this information we can conclude that first class passengers were 38% more likely to survive than the third class passengers.')
@@ -838,6 +844,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
