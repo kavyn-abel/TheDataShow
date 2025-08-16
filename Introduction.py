@@ -15,7 +15,7 @@ with col2:
 st.write()
 st.write()
 st.write('Welcome to The Data Show!')
-st.write('I am excited to introduce you to the field of data science. Data scientists work with data to find insights that help people in all kinds of fields make informed decisions. The abilities of a data scientist are needed by businesses, sports teams, in medicine, government, and much more. These skills include programming and statistics, along with data storage, manipulation, analysis, and visualization.')
+st.write('I am excited to introduce you to the field of data science. Data scientists work with data to find insights that help people in all kinds of fields make informed decisions. The abilities of a data scientist are needed by businesses, sports teams, in medicine, government, and much more. These skills include programming and statistics, along with data storage, manipulation, analysis, visualization, and machine learning.')
 st.write('This app is designed to give you examples of ways data scientists work with data. They use dataframes as a way to organize data in rows and columns:')
 st.image('dataframe.png')
 st.write('Image source: *https://www.geeksforgeeks.org/pandas/python-pandas-dataframe/*')
@@ -33,4 +33,5 @@ st.write('')
 st.write('Let\'s dive in.')
 st.write('Please select \'Topics\' in the sidebar at the left, and then choose a topic to explore.')
     
+
 
