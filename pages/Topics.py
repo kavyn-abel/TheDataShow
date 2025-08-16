@@ -733,9 +733,9 @@ model.fit(X_train, y_train)
         with st.expander("Here is the code for the machine learning process."):
             code = ''' # Predict and evaluate
 y_pred = model.predict(X_val)
-accuracy = accuracy_score(y_val, y_pred)
+accuracy = round(accuracy_score(y_val, y_pred) * 100, 2)
 
-st.write(f'Accuracy is: {accuracy}')
+st.write(f'The accuracy of the model is: {accuracy}%.')
 
 coefficients = pd.DataFrame({
     'Feature': features,
@@ -848,6 +848,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
