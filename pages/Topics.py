@@ -561,7 +561,7 @@ titanic_df.info()
     def pie_charts(titanic_df:pd.DataFrame):
         divider_line()
 
-        st.write('Data can be visualized and help us gain more understanding and insight than we can from looking at all the individual rows of data. Here are some pie charts that help us learn more the gender and class distribution of the passengers of the Titanic. (You can hover over each section in the chart for more info.)')
+        st.write('Data can be visualized and help us gain more understanding and insight than we can from the individual rows of data. Here are some pie charts that help us learn more about the gender and class distribution of the Titanic passengers. (You can hover over each section in the chart for more info.)')
         st.write('Here we can see that there are more males than females aboard the titanic')
         
         # Look at gender data in a pie chart
@@ -847,6 +847,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
