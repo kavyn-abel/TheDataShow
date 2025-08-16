@@ -681,7 +681,7 @@ titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
         divider_line()
 
         st.write('Ok, so the basic idea of machine learning is that you give the computer data, you let it practice with the data- allowing it to learn and identify patterns. Then have it make predictions or decisions without being told the answer.')
-        st.write('We will select the data to be used for the model to predict whether a passenger will survive or not. The features I\'ve chosen are: \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'. With this data the computer will be learning and then predicting whether a passenger would survive the Titanic, or not.')
+        st.write('We select data to be used by the computer to predict whether a passenger will survive the Titanic or not. The features I\'ve chosen are: \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'.')
         # Select features and target (not using cabin or embarked which had null values)
         features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
         X = titanic_df1[features]
@@ -847,6 +847,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
