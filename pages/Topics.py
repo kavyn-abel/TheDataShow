@@ -726,7 +726,9 @@ model.fit(X_train, y_train)
 
         st.write('Shown below are coefficients. Coefficients are numbers that show how important each column of data is to the computer\'s prediction.')
         st.dataframe(coefficients)
-        st.write('A positive number shows that a column was more likely to contribute to survival, a negative number is less likely to contribute to survival. The larger the number (in magnitude- not positive or negative), the more it contributed. Gender as a high positive coefficient means you are more likely to survive based on your gender- female in this case. And Class is negative, based on your class (third class) you are less likely to survive.')
+        st.write('A positive number shows that a column was more likely to contribute to survival, a negative number is less likely to contribute to survival. The larger the number (in magnitude- not positive or negative), the more it contributed.') 
+        st.write('Gender has a high positive coefficient meaning a passenger is more likely to survive based on their gender- female in this case.')
+        st.write('Class is negative, based on a passengers class (third class) they are less likely to survive.')
         st.write('We saw this before when we looked at the class data we saw that the first class passengers survived more than third class passengers. But what about gender? What about the women surviving more than the men? Why might that be? Well in this event there was a woman and children first policy. Lifeboat access was prioritized for women and children. First class and second class women passengers would also have been closer to the lifeboats than the third class passengers. These factors contributed to their survivability.')
 
         with st.expander("Here is the code for the machine learning process."):
@@ -847,6 +849,7 @@ elif topic == '⚓ The Titanic':
     titanic_df1 = Titanic.pre_processing(titanic_df)
 
     Titanic.machine_learning(titanic_df1)
+
 
 
 
