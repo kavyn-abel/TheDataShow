@@ -548,7 +548,7 @@ st.dataframe(titanic_df.head(), hide_index=True)
         st.text(titanic_df_info)
 
         with st.expander("How do we see the info of a dataset in Python?"):
-            code = ''' # We use the .info() command like this.
+            code = ''' # We use the .info() command like this on our dataframe.
 titanic_df.info()
         '''
             st.code(code, language="python")
@@ -561,8 +561,8 @@ titanic_df.info()
     def pie_charts(titanic_df:pd.DataFrame):
         divider_line()
 
-        st.write('Data can be visualized and help us gain more understanding and insight than we can from the individual rows of data. Here are some pie charts that help us learn more about the gender and class distribution of the Titanic passengers. (You can hover over each section in the chart for more info.)')
-        st.write('Here we can see that there are more males than females aboard the titanic')
+        st.write('Data can be visualized to help us gain more understanding and insight than we can from the individual rows of data. Here are some pie charts that help us learn more about the gender and class distributions of the Titanic passengers. (You can hover over each section in the charts for more info.)')
+        st.write('Here we can see that there are more males than females aboard the titanic:')
         
         # Look at gender data in a pie chart
         gender_chart = alt.Chart(titanic_df).mark_arc().encode(
@@ -573,7 +573,7 @@ titanic_df.info()
 
         st.altair_chart(gender_chart, theme = None)
 
-        st.write('This chart below shows us that there are much more third class passengers than first and second class.')
+        st.write('This chart below shows us that there are much more third class passengers than first and second class:')
 
         # Pclass pie chart
         pclass_chart = alt.Chart(titanic_df).mark_arc().encode(
@@ -603,7 +603,7 @@ pclass_chart = alt.Chart(titanic_df).mark_arc().encode(
     tooltip=[alt.Tooltip('Pclass:N'), alt.Tooltip('count():Q')]
 ).properties(title = 'Pclass Counts')
 
-# Display in the app.
+# Display the chart in the app.
 st.altair_chart(pclass_chart, theme = None)
         '''
             st.code(code, language="python")
@@ -653,10 +653,10 @@ st.altair_chart(pclass_chart, theme = None)
         divider_line()
         titanic_df1 = titanic_df.copy()
 
-        st.write('Another facet of data science is machine learning. I will simply explain what this is later. For now, here are some important details regarding preparing your data before the machine learning happens.')
+        st.write('Another facet of data science is machine learning. I will explain what this is later. For now, here are some important details regarding the preparation of data before the machine learning happens.')
 
-        st.write('Machine learning models rely heavily on mathematical algorithms. So, we need to ensure that we are working with only numerical data, and make sure that no null (or empty) values are in our dataset.')
-        st.write('For that reason we will encode the gender column to a 1 and 0. 1 for female, and 0 for male.')
+        st.write('Machine learning models rely heavily on mathematical algorithms. So, we need to ensure that we are working with only numerical data, and make sure there are no null (or empty) values in our dataset.')
+        st.write('For that reason we will encode the gender column to values of 1 and 0. 1 representing a female passenger, and 0 for male.')
 
         # Encode gender to female: 1, male: 0
         titanic_df1['Gender'] = titanic_df1['Gender'].map({'male': 0, 'female': 1})
@@ -680,7 +680,7 @@ titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
     def machine_learning(titanic_df1:pd.DataFrame):
         divider_line()
 
-        st.write('Ok, so the basic idea of machine learning is that you give the computer data, you let it practice with the data- allowing it to learn and identify patterns. Then have it make predictions or decisions without being told the answer.')
+        st.write('Ok, so the basic idea of machine learning is that you give the computer data, you let it practice with the data- allowing it to learn and identify patterns. Then have the computer make predictions or decisions without being told the answer.')
         st.write('We select data to be used by the computer to predict whether a passenger will survive the Titanic or not. The features I\'ve chosen are: \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'.')
         # Select features and target (not using cabin or embarked which had null values)
         features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
@@ -709,7 +709,7 @@ model.fit(X_train, y_train)
         '''
             st.code(code, language="python")
 
-        st.write('Now that the computer is trained (it has learned and practiced), we can use it to predict whether passengers will survive the Titanic on its own (without the answers).')
+        st.write('After the computer is trained (it has learned and practiced), we can use it to predict whether passengers will survive the Titanic on its own (without the answers).')
 
         # Predict and evaluate
         y_pred = model.predict(X_val)
@@ -725,8 +725,8 @@ model.fit(X_train, y_train)
         })
 
         st.write('Shown below are coefficients. Coefficients are numbers that show how important each column of data is to the computer\'s prediction.')
-        st.dataframe(coefficients)
         st.write('A positive number shows that a column was more likely to contribute to survival, a negative number is less likely to contribute to survival. The larger the number (in magnitude- not positive or negative), the more it contributed.') 
+        st.dataframe(coefficients)
         st.write('Gender has a high positive coefficient meaning a passenger is more likely to survive based on their gender- female in this case.')
         st.write('Class is negative, based on a passengers class (third class) they are less likely to survive.')
         st.write('We saw this before when we looked at the class data we saw that the first class passengers survived more than third class passengers. But what about gender? What about the women surviving more than the men? Why might that be? Well in this event, there was a woman and children first policy. Lifeboat access was prioritized for women and children. First class and second class women passengers would also have been closer to the lifeboats than the third class passengers. These factors contributed to the Titanic passengers survivability.')
@@ -857,6 +857,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
