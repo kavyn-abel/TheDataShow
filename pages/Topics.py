@@ -318,7 +318,7 @@ st.dataframe(recent_movies_df1.head(), hide_index=True)
         st.write('Now, let\'s sort the data by the vote average and see what movies, on average, get the highest vote rating out of 10.')
         highest_vote_avg = recent_movies_df1.sort_values('vote_average', ascending = False)
         st.dataframe(highest_vote_avg.head(), hide_index=True)
-        st.write('Notice anything? These movies have a 10 point average, but have you heard of them? Maybe not because there is only 1 vote for each of these movies.')
+        st.write('Notice anything? These movies have a 10 point average, but have you heard of them? Maybe not, because there is only 1 vote for each of these movies.')
 
         st.text('')
         st.write('So, let\'s also sort by the vote count as well and see how that looks.')
@@ -863,6 +863,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
