@@ -591,7 +591,7 @@ titanic_df.info()
         st.altair_chart(pclass_chart, theme = None)
 
         with st.expander("How did we make these charts from the data?"):
-            code = ''' # We used this alt.Chart function to create the chart. The .mark_arc() piece 
+            code = '''# We used this alt.Chart function to create the chart. The .mark_arc() piece 
 # tells the function that we want a pie chart.
 gender_chart = alt.Chart(titanic_df).mark_arc().encode(
     theta=alt.Theta(field='Gender', type='nominal', aggregate='count'),
@@ -886,6 +886,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
