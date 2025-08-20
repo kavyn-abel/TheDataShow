@@ -533,7 +533,7 @@ class Titanic:
         st.dataframe(titanic_df.head(), hide_index=True)
 
         with st.expander("How did we bring that data into Python?"):
-            code = ''' # We read in the data into a dataframe from a csv file.
+            code = '''# We read in the data into a dataframe from a csv file.
 titanic_df = pd.read_csv('titanic_dataset.csv')
 
 # Then, we displayed the first 5 rows of data to you in the app.
@@ -554,7 +554,7 @@ st.dataframe(titanic_df.head(), hide_index=True)
         st.text(titanic_df_info)
 
         with st.expander("How do we see the info of a dataset in Python?"):
-            code = ''' # We use the .info() command like this on our dataframe.
+            code = '''# We use the .info() command like this on our dataframe.
 titanic_df.info()
         '''
             st.code(code, language="python")
@@ -886,6 +886,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
