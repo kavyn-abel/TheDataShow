@@ -656,7 +656,7 @@ st.altair_chart(pclass_chart, theme = None)
         st.write('From this information we can conclude that first class passengers were 38% more likely to survive than the third class passengers.')
 
         with st.expander("How did we get these values?"):
-            code = ''' # Get the count of passengers for each class
+            code = '''# Get the count of passengers for each class
 class_count_df = pclass_df.groupby('Pclass').agg(Passenger_Count = ('Survived', 'count'))
 # Display the data
 st.dataframe(class_count_df)
@@ -886,6 +886,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
