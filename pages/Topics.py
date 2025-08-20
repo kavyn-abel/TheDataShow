@@ -602,7 +602,7 @@ gender_chart = alt.Chart(titanic_df).mark_arc().encode(
 # Next, we display the chart in the app.
 st.altair_chart(gender_chart, theme = None)
 
-# Pclass pie chart
+# Pclass pie chart.
 pclass_chart = alt.Chart(titanic_df).mark_arc().encode(
     theta=alt.Theta(field='Pclass', type='nominal', aggregate='count'),
     color=alt.Color('Pclass:N'),
@@ -656,19 +656,19 @@ st.altair_chart(pclass_chart, theme = None)
         st.write('From this information we can conclude that first class passengers were 38% more likely to survive than the third class passengers.')
 
         with st.expander("How did we get these values?"):
-            code = '''# We got the count of passengers for each class
+            code = '''# We got the count of passengers for each class.
 class_count_df = pclass_df.groupby('Pclass').agg(Passenger_Count = ('Survived', 'count'))
 
-# We summed the number of passengers who survived by pclass
+# We summed the number of passengers who survived by pclass.
 pclass_df1 = pclass_df[['Pclass', 'Survived']]
 pclass_df2 = pclass_df1.groupby('Pclass').agg(Number_Survived = ('Survived', 'sum'))
 
-# Joined the dataframes
+# Joined the dataframes.
 survival_rate_df = pd.merge(left = class_count_df, right = pclass_df2, on = 'Pclass', how = 'left')
 
-# Created a calculated column for the survival rate
+# Created a calculated column for the survival rate.
 survival_rate_df['Survival_Rate'] = survival_rate_df['Number_Survived'] / survival_rate_df['Passenger_Count']
-# And displayed the data
+# And displayed the data.
 st.dataframe(survival_rate_df.head())
 
         '''
@@ -720,15 +720,15 @@ titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
         model.fit(X_train, y_train)
 
         with st.expander("Here is the code for the machine learning process."):
-            code = '''# Select features and target (not using cabin or embarked which had null values)
+            code = '''# Selected features and target (not using cabin or embarked which had null values).
 features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
 X = titanic_df1[features]
 y = titanic_df1['Survived']
 
-# Split into training and validation sets
+# Split into training and validation sets.
 X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Train the model
+# Train the model.
 model = LogisticRegression(max_iter=1000)
 model.fit(X_train, y_train)
         '''
@@ -757,7 +757,7 @@ model.fit(X_train, y_train)
         st.write('We saw this before when we looked at the class data we saw that the first class passengers survived more than third class passengers. But what about gender? What about the women surviving more than the men? Why might that be? Well in this event, there was a woman and children first policy. Lifeboat access was prioritized for women and children. First class and second class women passengers would also have been closer to the lifeboats than the third class passengers. These factors contributed to the Titanic passengers survivability.')
 
         with st.expander("Here is the code for the computers accuracy and coefficients."):
-            code = '''# Predict and evaluate
+            code = '''# Predict and evaluate.
 y_pred = model.predict(X_val)
 accuracy = round(accuracy_score(y_val, y_pred) * 100, 2)
 
@@ -882,6 +882,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
