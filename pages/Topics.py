@@ -32,7 +32,7 @@ class Birthday:
     # Note - data is just information.
     def load_birthday_data():
         st.write('We\'re gonna talk about birthday data.')
-        st.write('Here\'s the url for the data we\'ll be using. Data is information. This data includes the number of births for each day of the year in the U.S. for the years 2000-2014. Click on the link below to see the raw data.')
+        st.write('Here\'s the url for the data we\'ll be using. This data includes the number of births for each day of the year in the U.S. for the years 2000-2014. Click on the link below to see the raw data.')
         st.write('https://raw.githubusercontent.com/fivethirtyeight/data/master/births/US_births_2000-2014_SSA.csv')
 
         st.write('Let\'s bring in that data with Python code.')
@@ -266,6 +266,10 @@ class Movie:
     def load_movie_data():
         st.write('Let\'s talk movies!')
         st.write('In this section we are looking at data from movies released since 2022 until August 2023.')
+        st.write('Here is where I retrieved the original dataset, if you are interested: https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset')
+        st.write('Here we are working off of the movies_metadata.csv that is found there.')
+        # The original kaggle movie dataset is in here: https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset
+    # I am working with the movies_metadata.csv
 
         # Open the CSV file in read mode
         with open("movies_since_2022_select_columns.csv", "r", encoding="utf-8") as f:
@@ -858,6 +862,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
