@@ -266,7 +266,7 @@ class Movie:
     def load_movie_data():
         st.write('Let\'s talk movies!')
         st.write('In this section we are looking at data from movies released since 2022 until August 2023.')
-        st.write('Here is where I retrieved the original dataset, if you are interested: https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset')
+        st.write('Here is the original dataset, if you are interested: https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset')
         st.write('In this section we are working off of the movies_metadata.csv that is found there.')
         # The original kaggle movie dataset is in here: https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset
     # I am working with the movies_metadata.csv
@@ -508,7 +508,7 @@ class Titanic:
     def load_titanic_data():
         st.write('Alright, the Titanic!')
         st.write('In this section we are looking at passenger data from the Titanic, which sank in the North Atlantic Ocean on April 15, 1912.')
-        st.write('Here is where I retreived the original dataset if you are interested: https://www.kaggle.com/datasets/yasserh/titanic-dataset/data?select=Titanic-Dataset.csv')
+        st.write('Here is the original dataset, if you are interested: https://www.kaggle.com/datasets/yasserh/titanic-dataset/data?select=Titanic-Dataset.csv')
 
         # Here is a link to the titanic kaggle dataset: https://www.kaggle.com/datasets/yasserh/titanic-dataset/data?select=Titanic-Dataset.csv
         # Open the CSV file in read mode
@@ -686,8 +686,8 @@ titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
     def machine_learning(titanic_df1:pd.DataFrame):
         divider_line()
 
-        st.write('Ok, so the basic idea of machine learning is that you give the computer data, you let it practice with the data- allowing it to learn and identify patterns. Then have the computer make predictions or decisions without being told the answer.')
-        st.write('We select data to be used by the computer to predict whether a passenger will survive the Titanic or not. The features I\'ve chosen are: \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'.')
+        st.write('The basic idea of machine learning is that you give the computer data, you let it practice with the data- allowing it to learn and identify patterns. Then have the computer make predictions or decisions without being told the answer.')
+        st.write('We select data to be used by the computer to predict whether a passenger will survive the Titanic or not. The features we\'re using are: \'Pclass\', \'Gender\', \'Age\', \'SibSp\', \'Parch\', and \'Fare\'.')
         # Select features and target (not using cabin or embarked which had null values)
         features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
         X = titanic_df1[features]
@@ -863,6 +863,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
