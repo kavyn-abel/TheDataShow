@@ -62,7 +62,7 @@ st.dataframe(data = birthday_df.head(), hide_index=True)
         divider_line()
 
         st.write('With this data we can find out things such as which year had the most births.')
-        st.write('We can do this by summing the number of births within each year. We can look at the results in the chart below (If you hover a bar in the chart, it will show you the number of births for that year.):')
+        st.write('We can do this by summing the number of births within each year. We can look at the results in the chart below (If you hover over a bar in the chart, it will show you the number of births for that year.):')
 
         # Get the number of births per year
         years_df = birthday_df.groupby("year").sum().reset_index()
@@ -863,6 +863,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
