@@ -376,7 +376,7 @@ highest_vote_avg_and_count1 = highest_vote_avg_and_count[highest_vote_avg_and_co
         bom_df2 = bom_df1.sort_values('Box Office Margin', ascending = False)
         # st.table(bom_df2.head(10))
 
-        st.write('Here is a chart showing the top 5 movies with that criteria. (You can hover over a bar to get the exact Box Office Margin)')
+        st.write('Here is a chart showing the top 5 movies with that criteria. (You can hover over a bar to get the exact Box Office Margin for that movie)')
 
         # Chart for most profitable movies
         bom_movie_data = bom_df2.head(5)
@@ -863,6 +863,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
