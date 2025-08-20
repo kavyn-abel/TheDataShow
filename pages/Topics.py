@@ -696,7 +696,7 @@ st.dataframe(survival_rate_df.head())
         titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
 
         with st.expander("How did we do this?"):
-            code = ''' # We encoded the gender column to female: 1, male: 0 like this:
+            code = '''# We encoded the gender column to female: 1, male: 0 like this:
 titanic_df1['Gender'] = titanic_df1['Gender'].map({'male': 0, 'female': 1})
 
 # Then we filled in the blank age values with the median age.
@@ -724,7 +724,7 @@ titanic_df1['Age'] = titanic_df1['Age'].fillna(titanic_df1['Age'].median())
         model.fit(X_train, y_train)
 
         with st.expander("Here is the code for the machine learning process."):
-            code = ''' # Select features and target (not using cabin or embarked which had null values)
+            code = '''# Select features and target (not using cabin or embarked which had null values)
 features = ['Pclass', 'Gender', 'Age', 'SibSp', 'Parch', 'Fare']
 X = titanic_df1[features]
 y = titanic_df1['Survived']
@@ -761,7 +761,7 @@ model.fit(X_train, y_train)
         st.write('We saw this before when we looked at the class data we saw that the first class passengers survived more than third class passengers. But what about gender? What about the women surviving more than the men? Why might that be? Well in this event, there was a woman and children first policy. Lifeboat access was prioritized for women and children. First class and second class women passengers would also have been closer to the lifeboats than the third class passengers. These factors contributed to the Titanic passengers survivability.')
 
         with st.expander("Here is the code for the computers accuracy and coefficients."):
-            code = ''' # Predict and evaluate
+            code = '''# Predict and evaluate
 y_pred = model.predict(X_val)
 accuracy = round(accuracy_score(y_val, y_pred) * 100, 2)
 
@@ -886,6 +886,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
