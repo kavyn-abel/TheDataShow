@@ -663,7 +663,7 @@ class_count_df = pclass_df.groupby('Pclass').agg(Passenger_Count = ('Survived', 
 pclass_df1 = pclass_df[['Pclass', 'Survived']]
 pclass_df2 = pclass_df1.groupby('Pclass').agg(Number_Survived = ('Survived', 'sum'))
 
-# Joined the dataframes.
+# Joined the dataframes together.
 survival_rate_df = pd.merge(left = class_count_df, right = pclass_df2, on = 'Pclass', how = 'left')
 
 # Created a calculated column for the survival rate.
@@ -882,6 +882,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
