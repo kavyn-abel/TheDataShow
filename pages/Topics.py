@@ -267,7 +267,7 @@ class Movie:
         st.write('Let\'s talk movies!')
         st.write('In this section we are looking at data from movies released since 2022 until August 2023.')
         st.write('Here is where I retrieved the original dataset, if you are interested: https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset')
-        st.write('Here we are working off of the movies_metadata.csv that is found there.')
+        st.write('In this section we are working off of the movies_metadata.csv that is found there.')
         # The original kaggle movie dataset is in here: https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset
     # I am working with the movies_metadata.csv
 
@@ -862,6 +862,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
