@@ -364,7 +364,7 @@ highest_vote_avg_and_count1 = highest_vote_avg_and_count[highest_vote_avg_and_co
         bom_df['Box Office Margin'] = bom_df['revenue'] - bom_df['budget']
 
         st.text('')
-        st.write('Let\'s take a look at it:')
+        st.write('Let\'s take a look at it (scroll all the way to the right ):')
         st.dataframe(bom_df.head(1), hide_index=True)
 
         st.text('')
@@ -863,6 +863,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
