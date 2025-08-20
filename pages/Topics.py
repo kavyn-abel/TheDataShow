@@ -266,7 +266,7 @@ class Movie:
     def load_movie_data():
         st.write('Let\'s talk movies!')
         st.write('In this section we are looking at data from movies released since 2022 until August 2023.')
-        st.write('Here is the original dataset, if you are interested: https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset')
+        st.write('Here is the original dataset, if you\'re interested: https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset')
         st.write('In this section we are working off of the movies_metadata.csv that is found there.')
         # The original kaggle movie dataset is in here: https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset
     # I am working with the movies_metadata.csv
@@ -508,7 +508,7 @@ class Titanic:
     def load_titanic_data():
         st.write('Alright, the Titanic!')
         st.write('In this section we are looking at passenger data from the Titanic, which sank in the North Atlantic Ocean on April 15, 1912.')
-        st.write('Here is the original dataset, if you are interested: https://www.kaggle.com/datasets/yasserh/titanic-dataset/data?select=Titanic-Dataset.csv')
+        st.write('Here is the original dataset, if you\'re interested: https://www.kaggle.com/datasets/yasserh/titanic-dataset/data?select=Titanic-Dataset.csv')
 
         # Here is a link to the titanic kaggle dataset: https://www.kaggle.com/datasets/yasserh/titanic-dataset/data?select=Titanic-Dataset.csv
         # Open the CSV file in read mode
@@ -863,6 +863,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
