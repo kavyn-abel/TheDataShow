@@ -655,6 +655,29 @@ st.altair_chart(pclass_chart, theme = None)
 
         st.write('From this information we can conclude that first class passengers were 38% more likely to survive than the third class passengers.')
 
+        with st.expander("How did we get these values?"):
+            code = ''' # Get the count of passengers for each class
+class_count_df = pclass_df.groupby('Pclass').agg(Passenger_Count = ('Survived', 'count'))
+# Display the data
+st.dataframe(class_count_df)
+
+# Sum number of passengers who survived by pclass
+pclass_df1 = pclass_df[['Pclass', 'Survived']]
+pclass_df2 = pclass_df1.groupby('Pclass').agg(Number_Survived = ('Survived', 'sum'))
+# Display the data
+st.dataframe(pclass_df2)
+
+# Join the dataframes
+survival_rate_df = pd.merge(left = class_count_df, right = pclass_df2, on = 'Pclass', how = 'left')
+
+# Create a calculated column for the survival rate
+survival_rate_df['Survival_Rate'] = survival_rate_df['Number_Survived'] / survival_rate_df['Passenger_Count']
+# Display the data
+st.dataframe(survival_rate_df.head())
+
+        '''
+            st.code(code, language="python")
+
     def pre_processing(titanic_df:pd.DataFrame):
         divider_line()
         titanic_df1 = titanic_df.copy()
@@ -863,6 +886,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
