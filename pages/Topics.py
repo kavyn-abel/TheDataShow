@@ -508,6 +508,7 @@ class Titanic:
     def load_titanic_data():
         st.write('Alright, the Titanic!')
         st.write('In this section we are looking at passenger data from the Titanic, which sank in the North Atlantic Ocean on April 15, 1912.')
+        st.write('Here is where I retreived the original dataset if you are interested: https://www.kaggle.com/datasets/yasserh/titanic-dataset/data?select=Titanic-Dataset.csv')
 
         # Here is a link to the titanic kaggle dataset: https://www.kaggle.com/datasets/yasserh/titanic-dataset/data?select=Titanic-Dataset.csv
         # Open the CSV file in read mode
@@ -862,6 +863,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
