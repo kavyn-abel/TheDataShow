@@ -135,7 +135,7 @@ st.altair_chart(altair_chart = births_year_chart, theme = None)
         st.write('Enter your birthday below and we\'ll tell you how common it is out of the 366 days in a year.')
 
         # Collect an input date from the user
-        input_date = st.date_input('What is your birthday? (Just get the right month and day, the year doesn't matter)')
+        input_date = st.date_input('What is your birthday? (Just get the right month and day, the year doesn\'t matter)')
 
         # st.write(input_date)
 
@@ -883,6 +883,7 @@ elif topic == 'Level 3 - ⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
