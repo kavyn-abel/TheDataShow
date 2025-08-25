@@ -774,12 +774,12 @@ st.dataframe(coefficients)
 
 topic = st.selectbox(
     "Pick a Topic",
-    ("Select a topic", "📅 Birthdays", "🍿 Movies", "⚓ The Titanic"),
+    ("Select a topic", "Level 1 - 📅 Birthdays", "Level 2 - 🍿 Movies", "Level 3 - ⚓ The Titanic"),
     index=0
 )
 
 # Main
-if topic == '📅 Birthdays':
+if topic == 'Level 1 - 📅 Birthdays':
     birthday_df = Birthday.load_birthday_data()
 
     Birthday.calculate_births_by_year()
@@ -843,7 +843,7 @@ if topic == '📅 Birthdays':
 
 
 
-elif topic == '🍿 Movies':
+elif topic == 'Level 2 - 🍿 Movies':
     # The original kaggle movie dataset is in here: https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset
     # I am working with the movies_metadata.csv
     recent_movies_df1 = Movie.load_movie_data()
@@ -864,7 +864,7 @@ elif topic == '🍿 Movies':
 
     # Could show images of movies in some places too
 
-elif topic == '⚓ The Titanic':
+elif topic == 'Level 3 - ⚓ The Titanic':
     titanic_df = Titanic.load_titanic_data()
 
     Titanic.pie_charts(titanic_df)
@@ -882,6 +882,7 @@ elif topic == '⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
