@@ -777,6 +777,7 @@ topic = st.selectbox(
     ("Select a topic", "Level 1 - 📅 Birthdays", "Level 2 - 🍿 Movies", "Level 3 - ⚓ The Titanic"),
     index=0
 )
+# Testing, adding levels to each section.
 
 # Main
 if topic == 'Level 1 - 📅 Birthdays':
@@ -882,6 +883,7 @@ elif topic == 'Level 3 - ⚓ The Titanic':
     if st.button('Finished? Click Here.'):
         st.success("Nice job exploring data! 🙌 Want to try another path? Just pick another topic at the top.")
         st.snow()
+
 
 
 
